@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Even - A super concise theme for Hugo</title>
-    <link>http://localhost:1313/blog/</link>
-    <description>Recent content on Even - A super concise theme for Hugo</description>
+    <title>Posts on Even - A super concise theme for Hugo</title>
+    <link>http://localhost:1313/blog/post/</link>
+    <description>Recent content in Posts on Even - A super concise theme for Hugo</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Wed, 04 Nov 2020 10:02:16 +0800</lastBuildDate><atom:link href="http://localhost:1313/blog/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 04 Nov 2020 10:02:16 +0800</lastBuildDate><atom:link href="http://localhost:1313/blog/post/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>图像的熵</title>
       <link>http://localhost:1313/blog/post/image_entropy/</link>
