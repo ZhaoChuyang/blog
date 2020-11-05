@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Posts on Even - A super concise theme for Hugo</title>
-    <link>http://localhost:1313/blog/post/</link>
-    <description>Recent content in Posts on Even - A super concise theme for Hugo</description>
+    <title>中文 on Even - A super concise theme for Hugo</title>
+    <link>http://localhost:1313/blog/categories/%E4%B8%AD%E6%96%87/</link>
+    <description>Recent content in 中文 on Even - A super concise theme for Hugo</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Thu, 05 Nov 2020 09:40:09 +0800</lastBuildDate><atom:link href="http://localhost:1313/blog/post/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 05 Nov 2020 09:40:09 +0800</lastBuildDate><atom:link href="http://localhost:1313/blog/categories/%E4%B8%AD%E6%96%87/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Normalized Cross Correlation</title>
       <link>http://localhost:1313/blog/post/ncc/</link>

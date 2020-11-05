@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <title>图像的熵 - Even - A super concise theme for Hugo</title>
+  <title>Normalized Cross Correlation - Even - A super concise theme for Hugo</title>
   <meta name="renderer" content="webkit" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
@@ -16,7 +16,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
 
 
-<meta name="author" content="chuyang" /><meta name="description" content="熵是信息论中表示信息丰富度的量度，在图像中，熵表示一副图像可以提供信息的丰富程度。例如一张像素值变化不大的色彩单调的图片的熵就会小于一张色彩" /><meta name="keywords" content="Hugo, theme, even" />
+<meta name="author" content="chuyang" /><meta name="description" content="Normalized Cross Correlation (NCC) 算法常用于模版匹配 (Template matching)，即给定一个模版 $g$，需要确定 $g$ 在一张图片 $S$ 中的位置，该算法常应用于目标识别与定位任务。其基" /><meta name="keywords" content="Hugo, theme, even" />
 
 
 
@@ -26,7 +26,7 @@
 <meta name="generator" content="Hugo 0.77.0 with theme even" />
 
 
-<link rel="canonical" href="http://localhost:1313/blog/post/image_entropy/" />
+<link rel="canonical" href="http://localhost:1313/blog/post/ncc/" />
 <link rel="apple-touch-icon" sizes="180x180" href="/blog/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/blog/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/blog/favicon-16x16.png">
@@ -39,24 +39,24 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
 
 
-<meta property="og:title" content="图像的熵" />
-<meta property="og:description" content="熵是信息论中表示信息丰富度的量度，在图像中，熵表示一副图像可以提供信息的丰富程度。例如一张像素值变化不大的色彩单调的图片的熵就会小于一张色彩" />
+<meta property="og:title" content="Normalized Cross Correlation" />
+<meta property="og:description" content="Normalized Cross Correlation (NCC) 算法常用于模版匹配 (Template matching)，即给定一个模版 $g$，需要确定 $g$ 在一张图片 $S$ 中的位置，该算法常应用于目标识别与定位任务。其基" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="http://localhost:1313/blog/post/image_entropy/" />
-<meta property="article:published_time" content="2020-11-04T10:02:16+08:00" />
-<meta property="article:modified_time" content="2020-11-04T10:02:16+08:00" />
-<meta itemprop="name" content="图像的熵">
-<meta itemprop="description" content="熵是信息论中表示信息丰富度的量度，在图像中，熵表示一副图像可以提供信息的丰富程度。例如一张像素值变化不大的色彩单调的图片的熵就会小于一张色彩">
-<meta itemprop="datePublished" content="2020-11-04T10:02:16+08:00" />
-<meta itemprop="dateModified" content="2020-11-04T10:02:16+08:00" />
-<meta itemprop="wordCount" content="447">
+<meta property="og:url" content="http://localhost:1313/blog/post/ncc/" />
+<meta property="article:published_time" content="2020-11-05T09:40:09+08:00" />
+<meta property="article:modified_time" content="2020-11-05T09:40:09+08:00" />
+<meta itemprop="name" content="Normalized Cross Correlation">
+<meta itemprop="description" content="Normalized Cross Correlation (NCC) 算法常用于模版匹配 (Template matching)，即给定一个模版 $g$，需要确定 $g$ 在一张图片 $S$ 中的位置，该算法常应用于目标识别与定位任务。其基">
+<meta itemprop="datePublished" content="2020-11-05T09:40:09+08:00" />
+<meta itemprop="dateModified" content="2020-11-05T09:40:09+08:00" />
+<meta itemprop="wordCount" content="538">
 
 
 
 <meta itemprop="keywords" content="image processing," />
 <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="图像的熵"/>
-<meta name="twitter:description" content="熵是信息论中表示信息丰富度的量度，在图像中，熵表示一副图像可以提供信息的丰富程度。例如一张像素值变化不大的色彩单调的图片的熵就会小于一张色彩"/>
+<meta name="twitter:title" content="Normalized Cross Correlation"/>
+<meta name="twitter:description" content="Normalized Cross Correlation (NCC) 算法常用于模版匹配 (Template matching)，即给定一个模版 $g$，需要确定 $g$ 在一张图片 $S$ 中的位置，该算法常应用于目标识别与定位任务。其基"/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -119,10 +119,10 @@
           <article class="post">
     
     <header class="post-header">
-      <h1 class="post-title">图像的熵</h1>
+      <h1 class="post-title">Normalized Cross Correlation</h1>
 
       <div class="post-meta">
-        <span class="post-time"> 2020-11-04 </span>
+        <span class="post-time"> 2020-11-05 </span>
         <div class="post-category">
             <a href="/blog/categories/%E4%B8%AD%E6%96%87/"> 中文 </a>
             </div>
@@ -137,8 +137,12 @@
   <ul>
     <li>
       <ul>
-        <li><a href="#一维熵">一维熵</a></li>
-        <li><a href="#二维熵">二维熵</a></li>
+        <li>
+          <ul>
+            <li><a href="#pearson-correlation-coefficient">Pearson Correlation Coefficient</a></li>
+            <li><a href="#normalized-cross-correlation">Normalized Cross Correlation</a></li>
+          </ul>
+        </li>
       </ul>
     </li>
   </ul>
@@ -146,14 +150,38 @@
   </div>
 </div>
     <div class="post-content">
-      <p>熵是信息论中表示信息丰富度的量度，在图像中，熵表示一副图像可以提供信息的丰富程度。例如一张像素值变化不大的色彩单调的图片的熵就会小于一张色彩丰富的图片。常用的图像熵有一维图像熵与二维图像熵，并且都是应用在灰度图像上的，彩色图像的熵可以取各个信道的熵的和。</p>
-<h2 id="一维熵">一维熵</h2>
-<p>一维熵是灰度图像分析中最常用的熵，一维熵可以理解为图像中灰度分布的聚集特征包含的信息量。令 $p_k$ 表示像素值为 $k$ 的像素点出现的概率，则一维熵的计算如下：
-$$H=-\sum_k p_klog_2(p_k)$$
-其中$p_k=c_k/n$，其中 $c_k$ 为像素值为 $k$ 的像素在图像中出现的次数，$n$ 为图像中像素的总数。</p>
-<h2 id="二维熵">二维熵</h2>
-<p>一维熵可以反映图像整体的灰度分布特征，却缺失了图像各像素点与周围像素的联系的信息，为了表示出这个信息，引入了可以计算各个像素和其周围像素联系的二维熵。令 $p_{i,j}=f(i,j)/N^2$，$f(i,j)$ 表示一个像素值为 $i$，领域像素的均值为 $j$ 的像素点出现的频率，$N^2$ 为图像含有像素的总数，这样 $p_{i,j}$ 就可以反映出一个像素与其周围像素灰度值的关系。二维熵的计算如下：
-$$H=-\sum_i \sum_j p_{i,j}log_2(p_{i,j})$$</p>
+      <p>Normalized Cross Correlation (NCC) 算法常用于模版匹配 (Template matching)，即给定一个模版 $g$，需要确定 $g$ 在一张图片 $S$ 中的位置，该算法常应用于目标识别与定位任务。其基本的思想是计算模版 $g$ 与 $S$ 中的子图的相似度，即归一化互相关系数 (NCC)。</p>
+<h3 id="pearson-correlation-coefficient">Pearson Correlation Coefficient</h3>
+<p>NCC 算法基于 <a href="https://en.wikipedia.org/wiki/Pearson_correlation_coefficient">Peason Correlation Coefficient</a> (PCC)。PCC 在统计学中常用的用于衡量两个自由变量 $X$ 与 $Y$ 的线性关系。其计算如下:
+$$
+\rho_{X,Y}=\frac{\text{cov}(X,Y)}{\delta_X \delta_Y}
+$$
+其中 $\text{cov}(X,Y)$ 是 $X$ 与 $Y$ 的协方差，$\delta_X$ 与 $\delta_Y$ 分别是变量 $X$ 与 $Y$ 的标准差，分别可以使用如下公式计算:
+$$
+\text{cov}(X,Y)=\mathbb{E}[(X-\mathbb{E}[X])(Y-\mathbb{E}[Y])]=\mathbb{E}[XY]-\mathbb{E}[X]\mathbb{E}[Y]
+$$
+$$\delta_X^2=\mathbb{E}[(X-\mathbb{E}[X])^2]$$
+$$\delta_Y^2=\mathbb{E}[(Y-\mathbb{E}[Y])^2]$$</p>
+<h3 id="normalized-cross-correlation">Normalized Cross Correlation</h3>
+<p>NCC 的计算基于 PCC，设给定的模版为 $g$，我们需要找到其在一张图片 $S$ 中的位置。设 $g$ 的大小为 $N_x\times N_y$，$S$ 的大小为 $M_x\times M_y$，令 $S_{x,y}$ 表示 S 中以 $(x,y)$ 为左上角顶点的大小为 $N_x\times N_y$ 的子图，$S_{x,y}(i,j), g(i, j)$ 分别表示 $S_{x,y}$ 与 $g$ 中第 $i$ 行，$j$ 列像素的灰度值，$\bar{S}_{x,y}，\bar{g}$ 分别表示 $S_{x,y}$ 与 $g$ 的像素均值。则 NCC 可以写成如下形式：
+$$
+\rho(x,y)=\frac{\text{cov}(S_{x,y},g)}{\sqrt{D_{x,y}D_g}}
+$$
+<img src="/blog/images/ncc.png" alt="test image">
+其中 $\text{cov}(S_{x,y},g)$ 是 $S_{x,y}$ 与 $g$ 的协方差，$D_{x,y}$ 与 $D_g$ 是 $S_{x,y}$ 与 $g$ 的方差，$\text{cov}(S_{x,y},g)$ 可以用下式计算：
+$$
+\text{cov}(S_{x,y},g) = \frac{1}{N_xN_y}\sum_{i=1}^{N_x}\sum_{j=1}^{N_y}(S_{x,y}(i,j)-\bar{S}_{x,y})(g(i,j)-\bar{g})
+$$
+$S_{x,y}$ 的方差为：
+$$D_{x,y}=\frac{1}{N_xN_y}\sum_{i=1}^{N_x}\sum_{j=1}^{N_y}(S_{x,y}(i,j)-\bar{S}_{x,y})^2
+$$
+$g$ 的方差为：
+$$D_g = \frac{1}{N_xN_y}\sum_{i=1}^{N_x}\sum_{j=1}^{N_y}(g(i,j)-\bar{g})^2$$
+将其代入 NCC 得到：
+$$
+\rho(x,y)=\frac{\frac{1}{N_xN_y}\sum_{i=1}^{N_x}\sum_{j=1}^{N_y}(S_{x,y}(i,j)-\bar{S}_{x,y})(g(i,j)-\bar{g})}{\sqrt{\frac{1}{N_xN_y}\sum_{i=1}^{N_x}\sum_{j=1}^{N_y}(S_{x,y}(i,j)-\bar{S}_{x,y})^2 \cdot \frac{1}{N_xN_y}\sum_{i=1}^{N_x}\sum_{j=1}^{N_y}(g(i,j)-\bar{g})^2}}
+$$
+使用 NCC 可以计算 $S$ 中的各个子图与 $g$ 的相似程度，最后取相似度最高的位置作为模版匹配的位置。</p>
 
     </div>
 
@@ -165,7 +193,7 @@ $$H=-\sum_i \sum_j p_{i,j}log_2(p_{i,j})$$</p>
   <p class="copyright-item">
     <span class="item-title">LastMod</span>
     <span class="item-content">
-        2020-11-04
+        2020-11-05
         
     </span>
   </p>
@@ -177,12 +205,12 @@ $$H=-\sum_i \sum_j p_{i,j}log_2(p_{i,j})$$</p>
           <a href="/blog/tags/image-processing/">image processing</a>
           </div>
       <nav class="post-nav">
-        <a class="prev" href="/blog/post/ncc/">
-            <i class="iconfont icon-left"></i>
-            <span class="prev-text nav-default">Normalized Cross Correlation</span>
-            <span class="prev-text nav-mobile">Prev</span>
-          </a>
         
+        <a class="next" href="/blog/post/image_entropy/">
+            <span class="next-text nav-default">图像的熵</span>
+            <span class="next-text nav-mobile">Next</span>
+            <i class="iconfont icon-right"></i>
+          </a>
       </nav>
     </footer>
   </article>
