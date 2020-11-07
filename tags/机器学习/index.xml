@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>机器学习 on Chuyang&#39;s blog</title>
+    <link>http://localhost:1313/blog/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/</link>
+    <description>Recent content in 机器学习 on Chuyang&#39;s blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Sat, 07 Nov 2020 16:00:21 +0800</lastBuildDate><atom:link href="http://localhost:1313/blog/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>K-Nearest Neighbours</title>
+      <link>http://localhost:1313/blog/post/knn/</link>
+      <pubDate>Sat, 07 Nov 2020 16:00:21 +0800</pubDate>
+      
+      <guid>http://localhost:1313/blog/post/knn/</guid>
+      <description>K-Nearest Neighbours (KNN) 算法，中文译为 K 近邻算法，是一种监督学习算法，可以用于解决分类问题与回归问题。 基本思想 给定一个已经标注好的数据集，若是分类问题，数据集</description>
+    </item>
+    
+  </channel>
+</rss>

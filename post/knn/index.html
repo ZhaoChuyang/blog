@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <title>Normalized Cross Correlation - Chuyang&#39;s blog</title>
+  <title>K-Nearest Neighbours - Chuyang&#39;s blog</title>
   <meta name="renderer" content="webkit" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
@@ -16,7 +16,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
 
 
-<meta name="author" content="chuyang" /><meta name="description" content="Normalized Cross Correlation (NCC) 算法常用于模版匹配 (Template matching)，即给定一个模版 $g$，需要确定 $g$ 在一张图片 $S$ 中的位置，该算法常应用于目标识别与定位任务。其基" /><meta name="keywords" content="Hugo, theme, even" />
+<meta name="author" content="chuyang" /><meta name="description" content="K-Nearest Neighbours (KNN) 算法，中文译为 K 近邻算法，是一种监督学习算法，可以用于解决分类问题与回归问题。 基本思想 给定一个已经标注好的数据集，若是分类问题，数据集" /><meta name="keywords" content="Hugo, theme, even" />
 
 
 
@@ -26,7 +26,7 @@
 <meta name="generator" content="Hugo 0.77.0 with theme even" />
 
 
-<link rel="canonical" href="http://localhost:1313/blog/post/ncc/" />
+<link rel="canonical" href="http://localhost:1313/blog/post/knn/" />
 <link rel="apple-touch-icon" sizes="180x180" href="/blog/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/blog/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/blog/favicon-16x16.png">
@@ -39,24 +39,24 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
 
 
-<meta property="og:title" content="Normalized Cross Correlation" />
-<meta property="og:description" content="Normalized Cross Correlation (NCC) 算法常用于模版匹配 (Template matching)，即给定一个模版 $g$，需要确定 $g$ 在一张图片 $S$ 中的位置，该算法常应用于目标识别与定位任务。其基" />
+<meta property="og:title" content="K-Nearest Neighbours" />
+<meta property="og:description" content="K-Nearest Neighbours (KNN) 算法，中文译为 K 近邻算法，是一种监督学习算法，可以用于解决分类问题与回归问题。 基本思想 给定一个已经标注好的数据集，若是分类问题，数据集" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="http://localhost:1313/blog/post/ncc/" />
-<meta property="article:published_time" content="2020-11-05T09:40:09+08:00" />
-<meta property="article:modified_time" content="2020-11-05T09:40:09+08:00" />
-<meta itemprop="name" content="Normalized Cross Correlation">
-<meta itemprop="description" content="Normalized Cross Correlation (NCC) 算法常用于模版匹配 (Template matching)，即给定一个模版 $g$，需要确定 $g$ 在一张图片 $S$ 中的位置，该算法常应用于目标识别与定位任务。其基">
-<meta itemprop="datePublished" content="2020-11-05T09:40:09+08:00" />
-<meta itemprop="dateModified" content="2020-11-05T09:40:09+08:00" />
-<meta itemprop="wordCount" content="538">
+<meta property="og:url" content="http://localhost:1313/blog/post/knn/" />
+<meta property="article:published_time" content="2020-11-07T16:00:21+08:00" />
+<meta property="article:modified_time" content="2020-11-07T16:00:21+08:00" />
+<meta itemprop="name" content="K-Nearest Neighbours">
+<meta itemprop="description" content="K-Nearest Neighbours (KNN) 算法，中文译为 K 近邻算法，是一种监督学习算法，可以用于解决分类问题与回归问题。 基本思想 给定一个已经标注好的数据集，若是分类问题，数据集">
+<meta itemprop="datePublished" content="2020-11-07T16:00:21+08:00" />
+<meta itemprop="dateModified" content="2020-11-07T16:00:21+08:00" />
+<meta itemprop="wordCount" content="460">
 
 
 
-<meta itemprop="keywords" content="图像处理,模版匹配," />
+<meta itemprop="keywords" content="机器学习,KNN," />
 <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Normalized Cross Correlation"/>
-<meta name="twitter:description" content="Normalized Cross Correlation (NCC) 算法常用于模版匹配 (Template matching)，即给定一个模版 $g$，需要确定 $g$ 在一张图片 $S$ 中的位置，该算法常应用于目标识别与定位任务。其基"/>
+<meta name="twitter:title" content="K-Nearest Neighbours"/>
+<meta name="twitter:description" content="K-Nearest Neighbours (KNN) 算法，中文译为 K 近邻算法，是一种监督学习算法，可以用于解决分类问题与回归问题。 基本思想 给定一个已经标注好的数据集，若是分类问题，数据集"/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -119,10 +119,10 @@
           <article class="post">
     
     <header class="post-header">
-      <h1 class="post-title">Normalized Cross Correlation</h1>
+      <h1 class="post-title">K-Nearest Neighbours</h1>
 
       <div class="post-meta">
-        <span class="post-time"> 2020-11-05 </span>
+        <span class="post-time"> 2020-11-07 </span>
         <div class="post-category">
             <a href="/blog/categories/%E4%B8%AD%E6%96%87/"> 中文 </a>
             </div>
@@ -137,12 +137,14 @@
   <ul>
     <li>
       <ul>
-        <li>
+        <li><a href="#基本思想">基本思想</a></li>
+        <li><a href="#优势与劣势">优势与劣势</a>
           <ul>
-            <li><a href="#pearson-correlation-coefficient">Pearson Correlation Coefficient</a></li>
-            <li><a href="#normalized-cross-correlation">Normalized Cross Correlation</a></li>
+            <li><a href="#优势">优势</a></li>
+            <li><a href="#劣势">劣势</a></li>
           </ul>
         </li>
+        <li><a href="#优化">优化</a></li>
       </ul>
     </li>
   </ul>
@@ -150,38 +152,31 @@
   </div>
 </div>
     <div class="post-content">
-      <p>Normalized Cross Correlation (NCC) 算法常用于模版匹配 (Template matching)，即给定一个模版 $g$，需要确定 $g$ 在一张图片 $S$ 中的位置，该算法常应用于目标识别与定位任务。其基本的思想是计算模版 $g$ 与 $S$ 中的子图的相似度，即归一化互相关系数 (NCC)。</p>
-<h3 id="pearson-correlation-coefficient">Pearson Correlation Coefficient</h3>
-<p>NCC 算法基于 <a href="https://en.wikipedia.org/wiki/Pearson_correlation_coefficient">Peason Correlation Coefficient</a> (PCC)。PCC 在统计学中常用的用于衡量两个自由变量 $X$ 与 $Y$ 的线性关系。其计算如下:
+      <p>K-Nearest Neighbours (KNN) 算法，中文译为 K 近邻算法，是一种监督学习算法，可以用于解决分类问题与回归问题。</p>
+<h2 id="基本思想">基本思想</h2>
+<p>给定一个已经标注好的数据集，若是分类问题，数据集中的数据都已标注好类别，若为回归问题，数据中各数据都已标注好对应的值，数据集可以表示成如下形式:
 $$
-\rho_{X,Y}=\frac{\text{cov}(X,Y)}{\delta_X \delta_Y}
+[(X_i, y_i)|1\leq i\leq n]
 $$
-其中 $\text{cov}(X,Y)$ 是 $X$ 与 $Y$ 的协方差，$\delta_X$ 与 $\delta_Y$ 分别是变量 $X$ 与 $Y$ 的标准差，分别可以使用如下公式计算:
-$$
-\text{cov}(X,Y)=\mathbb{E}[(X-\mathbb{E}[X])(Y-\mathbb{E}[Y])]=\mathbb{E}[XY]-\mathbb{E}[X]\mathbb{E}[Y]
-$$
-$$\delta_X^2=\mathbb{E}[(X-\mathbb{E}[X])^2]$$
-$$\delta_Y^2=\mathbb{E}[(Y-\mathbb{E}[Y])^2]$$</p>
-<h3 id="normalized-cross-correlation">Normalized Cross Correlation</h3>
-<p>NCC 的计算基于 PCC，设给定的模版为 $g$，我们需要找到其在一张图片 $S$ 中的位置。设 $g$ 的大小为 $N_x\times N_y$，$S$ 的大小为 $M_x\times M_y$，令 $S_{x,y}$ 表示 S 中以 $(x,y)$ 为左上角顶点的大小为 $N_x\times N_y$ 的子图，$S_{x,y}(i,j), g(i, j)$ 分别表示 $S_{x,y}$ 与 $g$ 中第 $i$ 行，$j$ 列像素的灰度值，$\bar{S}_{x,y}，\bar{g}$ 分别表示 $S_{x,y}$ 与 $g$ 的像素均值。则 NCC 可以写成如下形式：
-$$
-\rho(x,y)=\frac{\text{cov}(S_{x,y},g)}{\sqrt{D_{x,y}D_g}}
-$$
-<img src="/blog/images/ncc.jpeg" alt="test image">
-其中 $\text{cov}(S_{x,y},g)$ 是 $S_{x,y}$ 与 $g$ 的协方差，$D_{x,y}$ 与 $D_g$ 是 $S_{x,y}$ 与 $g$ 的方差，$\text{cov}(S_{x,y},g)$ 可以用下式计算：
-$$
-\text{cov}(S_{x,y},g) = \frac{1}{N_xN_y}\sum_{i=1}^{N_x}\sum_{j=1}^{N_y}(S_{x,y}(i,j)-\bar{S}_{x,y})(g(i,j)-\bar{g})
-$$
-$S_{x,y}$ 的方差为：
-$$D_{x,y}=\frac{1}{N_xN_y}\sum_{i=1}^{N_x}\sum_{j=1}^{N_y}(S_{x,y}(i,j)-\bar{S}_{x,y})^2
-$$
-$g$ 的方差为：
-$$D_g = \frac{1}{N_xN_y}\sum_{i=1}^{N_x}\sum_{j=1}^{N_y}(g(i,j)-\bar{g})^2$$
-将其代入 NCC 得到：
-$$
-\rho(x,y)=\frac{\frac{1}{N_xN_y}\sum_{i=1}^{N_x}\sum_{j=1}^{N_y}(S_{x,y}(i,j)-\bar{S}_{x,y})(g(i,j)-\bar{g})}{\sqrt{\frac{1}{N_xN_y}\sum_{i=1}^{N_x}\sum_{j=1}^{N_y}(S_{x,y}(i,j)-\bar{S}_{x,y})^2 \cdot \frac{1}{N_xN_y}\sum_{i=1}^{N_x}\sum_{j=1}^{N_y}(g(i,j)-\bar{g})^2}}
-$$
-使用 NCC 可以计算 $S$ 中的各个子图与 $g$ 的相似程度，最后取相似度最高的位置作为模版匹配的位置。</p>
+对于待预测的数据 $X_t$，通过计算 $X_t$ 与数据集中所有数据 $X_i$ 的距离 $D(X_t,X_i)$，得到距离最小的 K 组数据。若是一个分类问题，就返回这 K 组数据中出现频率最高的类别；若是一个回归问题，就返回这 K 组数据的标签的均值 $\sum_{i=1}^{K} y_i/K$</p>
+<h2 id="优势与劣势">优势与劣势</h2>
+<h3 id="优势">优势</h3>
+<ol>
+<li>该算法思想简单易于实现</li>
+<li>无需定义模型，调整参数，因为该算法是一个无参方法 (non-parametric method)</li>
+<li>该算法应用面很广，既可以用于分类问题也可以用于回归问题</li>
+</ol>
+<h3 id="劣势">劣势</h3>
+<ol>
+<li>该算法的计算集中在预测过程中，因此当数据集过大时会很慢</li>
+</ol>
+<h2 id="优化">优化</h2>
+<p>可以从以下方面入手提升 KNN 算法的效果</p>
+<ol>
+<li>选择合适的 K 值，可以通过选择不同的 K 值并计算误差的方式选择合适的 K 值</li>
+<li>当数据集过大或其特征过多时，可以使用降维的方式减少计算量</li>
+<li>KNN 算法中距离的计算方式会很大程度上影响预测的结果，选择合适的方法计算距离可以提升算法的效果</li>
+</ol>
 
     </div>
 
@@ -193,7 +188,7 @@ $$
   <p class="copyright-item">
     <span class="item-title">LastMod</span>
     <span class="item-content">
-        2020-11-05
+        2020-11-07
         
     </span>
   </p>
@@ -202,17 +197,13 @@ $$
 </div>
 <footer class="post-footer">
       <div class="post-tags">
-          <a href="/blog/tags/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/">图像处理</a>
-          <a href="/blog/tags/%E6%A8%A1%E7%89%88%E5%8C%B9%E9%85%8D/">模版匹配</a>
+          <a href="/blog/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">机器学习</a>
+          <a href="/blog/tags/knn/">KNN</a>
           </div>
       <nav class="post-nav">
-        <a class="prev" href="/blog/post/eigenvalue/">
-            <i class="iconfont icon-left"></i>
-            <span class="prev-text nav-default">Eigenvalues and Eigenvectors</span>
-            <span class="prev-text nav-mobile">Prev</span>
-          </a>
-        <a class="next" href="/blog/post/image_entropy/">
-            <span class="next-text nav-default">Entropy of an image</span>
+        
+        <a class="next" href="/blog/post/eigenvalue/">
+            <span class="next-text nav-default">Eigenvalues and Eigenvectors</span>
             <span class="next-text nav-mobile">Next</span>
             <i class="iconfont icon-right"></i>
           </a>
