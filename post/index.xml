@@ -1,12 +1,21 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Posts on Even - A super concise theme for Hugo</title>
+    <title>Posts on Chuyang&#39;s blog</title>
     <link>http://localhost:1313/blog/post/</link>
-    <description>Recent content in Posts on Even - A super concise theme for Hugo</description>
+    <description>Recent content in Posts on Chuyang&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Thu, 05 Nov 2020 09:40:09 +0800</lastBuildDate><atom:link href="http://localhost:1313/blog/post/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 06 Nov 2020 21:32:51 +0800</lastBuildDate><atom:link href="http://localhost:1313/blog/post/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Eigenvalues and Eigenvectors</title>
+      <link>http://localhost:1313/blog/post/eigenvalue/</link>
+      <pubDate>Fri, 06 Nov 2020 21:32:51 +0800</pubDate>
+      
+      <guid>http://localhost:1313/blog/post/eigenvalue/</guid>
+      <description>特征值与特征向量是线性代数中非常重要的概念，其揭示了一个矩阵的诸多性质，本文将从特征值与特征向量的定义出发，介绍特征值与特征向量的性质与一些</description>
+    </item>
+    
     <item>
       <title>Normalized Cross Correlation</title>
       <link>http://localhost:1313/blog/post/ncc/</link>
@@ -17,7 +26,7 @@
     </item>
     
     <item>
-      <title>图像的熵</title>
+      <title>Entropy of an image</title>
       <link>http://localhost:1313/blog/post/image_entropy/</link>
       <pubDate>Wed, 04 Nov 2020 10:02:16 +0800</pubDate>
       

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>特征提取 on Chuyang&#39;s blog</title>
+    <link>http://localhost:1313/blog/tags/%E7%89%B9%E5%BE%81%E6%8F%90%E5%8F%96/</link>
+    <description>Recent content in 特征提取 on Chuyang&#39;s blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Wed, 04 Nov 2020 10:02:16 +0800</lastBuildDate><atom:link href="http://localhost:1313/blog/tags/%E7%89%B9%E5%BE%81%E6%8F%90%E5%8F%96/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Entropy of an image</title>
+      <link>http://localhost:1313/blog/post/image_entropy/</link>
+      <pubDate>Wed, 04 Nov 2020 10:02:16 +0800</pubDate>
+      
+      <guid>http://localhost:1313/blog/post/image_entropy/</guid>
+      <description>熵是信息论中表示信息丰富度的量度，在图像中，熵表示一副图像可以提供信息的丰富程度。例如一张像素值变化不大的色彩单调的图片的熵就会小于一张色彩</description>
+    </item>
+    
+  </channel>
+</rss>

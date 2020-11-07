@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Eigenvalues and Eigenvectors - Chuyang&#39;s blog</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="chuyang" /><meta name="description" content="特征值与特征向量是线性代数中非常重要的概念，其揭示了一个矩阵的诸多性质，本文将从特征值与特征向量的定义出发，介绍特征值与特征向量的性质与一些" /><meta name="keywords" content="Hugo, theme, even" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.77.0 with theme even" />
+
+
+<link rel="canonical" href="http://localhost:1313/blog/post/eigenvalue/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/blog/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/blog/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/blog/favicon-16x16.png">
+<link rel="manifest" href="/blog/manifest.json">
+<link rel="mask-icon" href="/blog/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/blog/sass/main.min.c7bc1becf36bcf6a9ebd25d2947e43a2eb745ddb0c9a32b43126fd7fa460c351.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="Eigenvalues and Eigenvectors" />
+<meta property="og:description" content="特征值与特征向量是线性代数中非常重要的概念，其揭示了一个矩阵的诸多性质，本文将从特征值与特征向量的定义出发，介绍特征值与特征向量的性质与一些" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://localhost:1313/blog/post/eigenvalue/" />
+<meta property="article:published_time" content="2020-11-06T21:32:51+08:00" />
+<meta property="article:modified_time" content="2020-11-06T21:32:51+08:00" />
+<meta itemprop="name" content="Eigenvalues and Eigenvectors">
+<meta itemprop="description" content="特征值与特征向量是线性代数中非常重要的概念，其揭示了一个矩阵的诸多性质，本文将从特征值与特征向量的定义出发，介绍特征值与特征向量的性质与一些">
+<meta itemprop="datePublished" content="2020-11-06T21:32:51+08:00" />
+<meta itemprop="dateModified" content="2020-11-06T21:32:51+08:00" />
+<meta itemprop="wordCount" content="1767">
+
+
+
+<meta itemprop="keywords" content="线性代数,特征值,特征向量," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Eigenvalues and Eigenvectors"/>
+<meta name="twitter:description" content="特征值与特征向量是线性代数中非常重要的概念，其揭示了一个矩阵的诸多性质，本文将从特征值与特征向量的定义出发，介绍特征值与特征向量的性质与一些"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/blog/" class="logo">Blog</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/blog/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/blog/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/blog/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/blog/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/blog/" class="logo">Blog</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/blog/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/blog/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/blog/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/blog/categories/">Categories</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">Eigenvalues and Eigenvectors</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2020-11-06 </span>
+        <div class="post-category">
+            <a href="/blog/categories/%E4%B8%AD%E6%96%87/"> 中文 </a>
+            </div>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">Contents</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#definition">Definition</a></li>
+        <li><a href="#singular">Singular Matrix</a></li>
+        <li><a href="#projection-matrix">Projection Matrix</a></li>
+        <li><a href="#how-to-find-eigenvalues-and-eigenvectors">How to find eigenvalues and eigenvectors?</a></li>
+        <li><a href="#trace-and-determinant">Trace and Determinant</a></li>
+        <li><a href="#matrix-addition">Matrix Addition</a></li>
+        <li><a href="#complex-eigenvalues">Complex Eigenvalues</a></li>
+        <li><a href="#triangular-matrix">Triangular Matrix</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <p>特征值与特征向量是线性代数中非常重要的概念，其揭示了一个矩阵的诸多性质，本文将从特征值与特征向量的定义出发，介绍特征值与特征向量的性质与一些具有特殊性质的矩阵。</p>
+<h2 id="definition">Definition</h2>
+<p>给定一个 $n\times n$ 的矩阵 $A$, $Ax$ 可以看作对向量 $x$ 的变换，得到一个新的向量 $y$，即：
+$$
+Ax=y, x\in \mathbb{R}^n, y\in \mathbb{R}^n, A\in \mathbb{R}^{n\times n}
+$$
+若是变换后的向量 $y$ 与原向量 $x$ 平行，且原向量不为零向量 (zero vector)，则称 $x$ 是 $A$ 的<strong>特征向量</strong>，由于 $y$ 与 $x$ 平行，即在同一个方向上，所以 $y$ 可以表示为 $\lambda x$，上式也可以写作如下形式 (注：由于零向量经任意矩阵变换后都与自身平行，无意义，所以不讨论这种情况)：
+$$
+Ax=\lambda x
+$$
+$\lambda$ 被称为 $A$ 的<strong>特征值</strong>。在 $\mathbb{R}^n$ 中，只有一小部分向量是 $A$ 的特征向量，所以 $Ax=\lambda x$ 并不是对任意向量恒成立，$A$ 的特征向量只是 $\mathbb{R}^n$ 的子集。变换后的向量 $\lambda x$ 需要满足与原向量平行（反方向向量、零向量的情况也是可以的）。</p>
+<h2 id="singular">Singular Matrix</h2>
+<p>考虑当 $\lambda =0$ 时，$Ax=\lambda x=\pmb{0}$，由于零向量与任何向量都平行，故也平行于 $x$，所以 $\lambda =0$ 也是 $A$ 的一个特征值。由于 $x$ 不为零向量，所以 $Ax=\pmb{0}$ 成立的条件是该 LES 有非平凡解 (non-trivial solution)，这样的矩阵 $A$ 也被称为奇异矩阵 (Singular Matrix)。</p>
+<blockquote>
+<p>奇异矩阵 (singular matrix) 可以将一个非零向量变换到零空间 (null space)</p>
+</blockquote>
+<h2 id="projection-matrix">Projection Matrix</h2>
+<p>对于一个投影矩阵 $P$，该矩阵可以将任意向量投影至一个过零向量的平面。矩阵的特征向量是在变换后与其仍在一个方向的向量，所以对于投影矩阵 $P$ 来说，其平面内的所有向量在投影后与其自身仍在一个方向，该平面内的向量都是 $P$ 的特征向量。除此之外，垂直于平面的向量在投影后为零向量，零向量与任意向量均平行，所以所有垂直于平面的向量也为矩阵 $P$ 的特征向量。</p>
+<h2 id="how-to-find-eigenvalues-and-eigenvectors">How to find eigenvalues and eigenvectors?</h2>
+<p>找到矩阵 $A$ 的特征值与特征向量等同于求解如下等式：
+$$
+Ax = \lambda x
+$$
+上式可以写成如下形式：
+$$
+(A-\lambda I)x=0
+$$
+要使 $x$ 存在，$A$ 必须是<a href="#singular">奇异矩阵</a>，否则 $x$ 只能是零向量。由于奇异矩阵的行列式 (determinant) 为 0，我们可以得到以下等式，该等式被称为矩阵 A 的<strong>特征值方程</strong> (eigenvalue equation)：
+$$
+\text{det}(A-\lambda I)=0
+$$
+<strong>一个$n\times n$的矩阵有 $n$ 个特征值。</strong> 上述方程有 $n$ 个解。</p>
+<h2 id="trace-and-determinant">Trace and Determinant</h2>
+<p>对于下列矩阵 $A$：
+$$
+A=\begin{bmatrix}
+3 &amp; 1\\<br>
+1 &amp; 3
+\end{bmatrix}
+$$
+其特征值方程为：
+$$
+\text{det}(A-\lambda I)=
+\begin{vmatrix}
+3-\lambda &amp; 1\\<br>
+1 &amp; 3-\lambda
+\end{vmatrix}=0
+$$
+代入行列式计算公式可以得到：
+$$(3-\lambda )^2-1=\lambda ^2 -6\lambda + 8=0$$
+注意上述方程有以下性质：
+$$\lambda_1+\lambda_2=6$$
+$$\lambda_1*\lambda_2=8$$
+注意到特征值的和其实就等于矩阵对角线元素的和，我们称这个值是矩阵的Trace。另外特征值的积等于矩阵的行列式。矩阵的特征值有以下性质：
+$$Tr(A)=\sum_i\lambda_i = \sum_i a_{ii}$$
+$$\text{det}(A)=\prod_i \lambda_i$$</p>
+<h2 id="matrix-addition">Matrix Addition</h2>
+<p>考虑将矩阵 $A$ 加上矩阵 $B$ 的情况，若是矩阵 $B=3I$，则矩阵 $A+B$ 的特征值与特征向量会发生什么变化？<br>
+由于 $A+B=A+3I$，所以可以得到以下结论：
+$$(A+B)x=(A+3I)x=Ax+3Ix=\lambda x+3x=(\lambda +3)x$$
+可以看到 $A+B$ 的特征值是 $\lambda +3$，即这两个矩阵特征值的和，$A+B$ 的特征向量没有变化。那么是不是对任意矩阵来说，他们相加后的特征值就是原来矩阵特征值的和呢？<br>
+<strong>矩阵相加后的特征值不为原矩阵特征值的和。</strong> 在定义部分提到过，一个矩阵的特征向量只是其向量空间中的一部分向量，所以我们不能认为矩阵 $A$ 与矩阵 $B$ 的特征向量是相同的，换言之，下列等式是不成立的：
+$$
+Ax+Bx=(A+B)x
+$$
+由于 $Ax$ 与 $Bx$ 中的 $x$ 并不相等，所以这两者不能相加合并，同样的理由也适用于矩阵相乘，相减的情况，除非矩阵 $B$ 是单位矩阵的整数倍，这种情况下它的特征向量就是向量空间的全体，否则两个矩阵相加后的特征值不会等于原矩阵特征值的和。</p>
+<h2 id="complex-eigenvalues">Complex Eigenvalues</h2>
+<p>考虑一个可以将向量旋转 $90^{\circ}$ 的矩阵 $Q$：
+$$
+Q=\begin{bmatrix}
+0 &amp; -1 \\<br>
+1 &amp; 0
+\end{bmatrix}
+$$
+由于 $Q$ 可以将任意向量旋转 $90^{\circ}$，除了零向量，没有向量在旋转后与原向量在同一方向。因此理论上来说该矩阵不存在特征向量。使用特征值公式计算矩阵 $Q$ 的特征值，得到以下方程：
+$$\lambda^2+1=0$$
+该方程的解为$\lambda=\pm i$，$Q$ 在实数域不存在特征值，$Q$ 的特征值是两个虚数。这种特征值是复数的情况在对称矩阵 (symmetric matrix) 上是不会发生的，<strong>对称矩阵的特征值一定都是实数</strong>。相对地，<strong>反对称矩阵 (anti-symmetric matrix) 的特征值一定是复数</strong>。除了这两种特殊情况，其余的介于对称与反对称之间的矩阵的特征值可能存在实数，也可能存在复数。</p>
+<h2 id="triangular-matrix">Triangular Matrix</h2>
+<p>三角矩阵也是一种特殊的矩阵，其特殊之处在于<strong>三角矩阵的特征值等于正对角线上的元素</strong>，例如对于以下矩阵 $A$:
+$$
+A = \begin{bmatrix}
+3 &amp; 1\\<br>
+0 &amp; 3
+\end{bmatrix}
+$$
+它的特征值为 $\lambda_1=\lambda_2=3$，由于这个矩阵的两个特征值相等，所以虽然它存在两个特征值，但是这两个特征值对应的独立的特征向量只有一个。</p>
+
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">Author</span>
+    <span class="item-content">chuyang</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">LastMod</span>
+    <span class="item-content">
+        2020-11-06
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/blog/tags/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/">线性代数</a>
+          <a href="/blog/tags/%E7%89%B9%E5%BE%81%E5%80%BC/">特征值</a>
+          <a href="/blog/tags/%E7%89%B9%E5%BE%81%E5%90%91%E9%87%8F/">特征向量</a>
+          </div>
+      <nav class="post-nav">
+        
+        <a class="next" href="/blog/post/ncc/">
+            <span class="next-text nav-default">Normalized Cross Correlation</span>
+            <span class="next-text nav-mobile">Next</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:chuyangzhao@126.com" class="iconfont icon-email" title="email"></a>
+      <a href="http://www.github.com/ZhaoChuyang" class="iconfont icon-github" title="github"></a>
+  <a href="http://localhost:1313/blog/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2017 - 
+    2020<span class="heart"><i class="iconfont icon-heart"></i></span><span>chuyang</span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/blog/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
+  <script type="text/javascript">
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$','$'], ['\\(','\\)']],
+        }
+    };
+  </script>
+  <script async src="https://cdn.jsdelivr.net/npm/mathjax@3.0.5/es5/tex-mml-chtml.js" integrity="sha256-HGLuEfFcsUJGhvB8cQ8nr0gai9EucOOaIxFw7qxmd+w=" crossorigin="anonymous"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>
