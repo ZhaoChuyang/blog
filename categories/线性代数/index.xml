@@ -2,11 +2,11 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>线性代数 on Chuyang&#39;s Blog</title>
-    <link>http://localhost:1313/blog/tags/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/</link>
+    <link>http://localhost:1313/blog/categories/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/</link>
     <description>Recent content in 线性代数 on Chuyang&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Sun, 08 Nov 2020 16:21:39 +0800</lastBuildDate><atom:link href="http://localhost:1313/blog/tags/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 08 Nov 2020 16:21:39 +0800</lastBuildDate><atom:link href="http://localhost:1313/blog/categories/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Positive Deinite Matrices and Positive Semidefinite Matrices</title>
       <link>http://localhost:1313/blog/post/positive_definite/</link>

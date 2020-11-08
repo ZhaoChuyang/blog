@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>KNN on Chuyang&#39;s Blog</title>
-    <link>http://localhost:1313/blog/tags/knn/</link>
-    <description>Recent content in KNN on Chuyang&#39;s Blog</description>
+    <title>机器学习 on Chuyang&#39;s Blog</title>
+    <link>http://localhost:1313/blog/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/</link>
+    <description>Recent content in 机器学习 on Chuyang&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Sat, 07 Nov 2020 16:00:21 +0800</lastBuildDate><atom:link href="http://localhost:1313/blog/tags/knn/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 07 Nov 2020 16:00:21 +0800</lastBuildDate><atom:link href="http://localhost:1313/blog/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>K-Nearest Neighbours</title>
       <link>http://localhost:1313/blog/post/knn/</link>

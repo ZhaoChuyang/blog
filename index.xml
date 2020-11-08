@@ -1,12 +1,21 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Chuyang&#39;s blog</title>
+    <title>Chuyang&#39;s Blog</title>
     <link>http://localhost:1313/blog/</link>
-    <description>Recent content on Chuyang&#39;s blog</description>
+    <description>Recent content on Chuyang&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Sat, 07 Nov 2020 16:00:21 +0800</lastBuildDate><atom:link href="http://localhost:1313/blog/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 08 Nov 2020 16:21:39 +0800</lastBuildDate><atom:link href="http://localhost:1313/blog/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Positive Deinite Matrices and Positive Semidefinite Matrices</title>
+      <link>http://localhost:1313/blog/post/positive_definite/</link>
+      <pubDate>Sun, 08 Nov 2020 16:21:39 +0800</pubDate>
+      
+      <guid>http://localhost:1313/blog/post/positive_definite/</guid>
+      <description>对称矩阵 (Symmetric Matrix) 的特征值都是实数，正定矩阵 (Positive Definite Matrix) 与半正定矩阵 (Positive Semidefinite Matrix) 是特殊的对称矩阵，正定矩阵的特征值均为正数，半正定矩阵的特征值不小于零。 For Positive Definite</description>
+    </item>
+    
     <item>
       <title>K-Nearest Neighbours</title>
       <link>http://localhost:1313/blog/post/knn/</link>
@@ -35,7 +44,7 @@
     </item>
     
     <item>
-      <title>Entropy of an image</title>
+      <title>Entropy of image</title>
       <link>http://localhost:1313/blog/post/image_entropy/</link>
       <pubDate>Wed, 04 Nov 2020 10:02:16 +0800</pubDate>
       
