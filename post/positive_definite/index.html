@@ -33,7 +33,7 @@
 <link rel="manifest" href="/blog/manifest.json">
 <link rel="mask-icon" href="/blog/safari-pinned-tab.svg" color="#5bbad5">
 
-<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
 
 <link href="/blog/sass/main.min.c7bc1becf36bcf6a9ebd25d2947e43a2eb745ddb0c9a32b43126fd7fa460c351.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
@@ -49,7 +49,7 @@
 <meta itemprop="description" content="对称矩阵 (Symmetric Matrix) 的特征值都是实数，正定矩阵 (Positive Definite Matrix) 与半正定矩阵 (Positive Semidefinite Matrix) 是特殊的对称矩阵，正定矩阵的特征值均为正数，半正定矩阵的特征值不小于零。 For Positive Definite">
 <meta itemprop="datePublished" content="2020-11-08T16:21:39+08:00" />
 <meta itemprop="dateModified" content="2020-11-08T16:21:39+08:00" />
-<meta itemprop="wordCount" content="555">
+<meta itemprop="wordCount" content="836">
 
 
 
@@ -131,7 +131,7 @@
             <a href="/blog/categories/%E4%B8%AD%E6%96%87/"> 中文 </a>
             <a href="/blog/categories/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/"> 线性代数 </a>
             </div>
-        <span id="busuanzi_container_page_pv" class="more-meta"> <span id="busuanzi_value_page_pv"><img src="/blog/img/spinner.svg" alt="spinner.svg"/></span> times read </span>
+        
       </div>
     </header>
 
@@ -142,8 +142,9 @@
   <ul>
     <li>
       <ul>
-        <li><a href="#form-positive-definite-matrices">Form Positive Definite Matrices</a></li>
+        <li><a href="#form">Form Positive Definite Matrices</a></li>
         <li><a href="#how-to-check-if-a-matrix-is-positive-definite">How to check if a matrix is positive definite?</a></li>
+        <li><a href="#energy-based-definition">Energy-based Definition</a></li>
       </ul>
     </li>
   </ul>
@@ -156,7 +157,7 @@
 <li>For Positive Definite Matrix: All $\lambda &gt; 0$</li>
 <li>For Positive Semidefinite Matrix: All $\lambda \geq 0$</li>
 </ul>
-<h2 id="form-positive-definite-matrices">Form Positive Definite Matrices</h2>
+<h2 id="form">Form Positive Definite Matrices</h2>
 <p>正定矩阵可以由任意一个常规矩阵 $A$ 通过转置与原矩阵作乘积构成：
 $$ S = A^TA $$
 $A$ 可以是任意 $n\times m$ 矩阵，不必是 $n\times n$ 方阶矩阵 (Square Matrix)。$A^TA$ 一定是对称矩阵，同时至少是一个半正定矩阵。其推导如下：<br>
@@ -170,14 +171,18 @@ $A^TA$ 正好是矩阵的乘方，所以可以写成如下形式：
 $$||Ax||^2 = \lambda ||x||^2$$
 由于 $x$ 不为零向量，所以 $||x||^2 &gt; 0$，由于$||Ax||\geq 0$ (当 $A$ 是奇异矩阵时，$||Ax|| = 0$)，所以 $\lambda \geq 0$。当存在 $\lambda = 0$ 时，$S$ 是一个半正定矩阵，当 $\lambda$ 均大于 $0$ 时，$S$ 是一个正定矩阵。</p>
 <h2 id="how-to-check-if-a-matrix-is-positive-definite">How to check if a matrix is positive definite?</h2>
-<p>以下条件可以检测一个矩阵是否是正定矩阵，只要矩阵 $S$ 满足下列任意一个条件，均可判断其为正定矩阵</p>
+<p>以下条件可以检测一个矩阵是否是正定矩阵，若是一个 $n\times n$ 矩阵 $S$ 满足下列任意一个条件，均可判断其为正定矩阵：</p>
 <ol>
 <li>矩阵 $S$ 的所以特征值 $\lambda$ 均大大于 $0$</li>
 <li>矩阵 $S$ 的主元 (pivots) 均大于 $0$</li>
 <li>矩阵 $S$ 的所有上左行列式 (upper left determinants) 均大于 $0$</li>
 <li>矩阵 $S$ 可以分解成如下形式 $S=A^TA$，并且 $A$ 的所有列均线性无关</li>
-<li>矩阵 $S$ 的能量 (Energy) 大于 $0$，即 $x^TSx&gt;0$，对所有非零向量均成立</li>
+<li>矩阵 $S$ 满足 $x^TSx&gt;0$，该不等式对所有非零向量 $x$ 均成立。该式也称为正定矩阵的<strong>能量定义</strong> (energy-based definition)</li>
 </ol>
+<p>条件 1 是正定矩阵的定义式，自然可以判断一个矩阵是否为正定矩阵。条件 2 中的主元指的是矩阵 $S$ 的化简阶梯型 (reduced row echelon form) 的主元。条件 3 中的 upper left determinants 是指从左上角开始的 $1\times 1$、$2\times 2$、&hellip;、$n\times n$ 这 $n$ 个矩阵的行列式均大于 $0$。对于下图中的矩阵来说，就是三个橙色框内的矩阵的行列式均大于 $0$。</p>
+<p><img src="/blog/images/upper_left.png" alt="upper left determinants"></p>
+<p>条件 4 在<a href="#form">构造正定矩阵</a>一节已经推导过，正定矩阵的约束条件还需要加上矩阵 $A$ 的所有列向量线性无关，等同于矩阵 $A$ 不为奇异矩阵。条件 5 是非常重要的一个概念，在机器学习与优化理论中都有很多的应用，这部分在下一节单独讨论。</p>
+<h2 id="energy-based-definition">Energy-based Definition</h2>
 
     </div>
 
@@ -238,11 +243,7 @@ $$||Ax||^2 = \lambda ||x||^2$$
     <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
   </span>
 
-  <div class="busuanzi-footer">
-    <span id="busuanzi_container_site_pv"> site pv: <span id="busuanzi_value_site_pv"><img src="/blog/img/spinner.svg" alt="spinner.svg"/></span> </span>
-      <span class="division">|</span>
-    <span id="busuanzi_container_site_uv"> site uv: <span id="busuanzi_value_site_uv"><img src="/blog/img/spinner.svg" alt="spinner.svg"/></span> </span>
-  </div>
+  
 
   <span class="copyright-year">
     &copy; 
