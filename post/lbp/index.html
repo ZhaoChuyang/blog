@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <title>Positive Deinite Matrices and Positive Semidefinite Matrices - Chuyang&#39;s Blog</title>
+  <title>Local Binary Patterns - Chuyang&#39;s Blog</title>
   <meta name="renderer" content="webkit" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
@@ -16,7 +16,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
 
 
-<meta name="author" content="chuyang" /><meta name="description" content="对称矩阵 (Symmetric Matrix) 的特征值都是实数，正定矩阵 (Positive Definite Matrix) 与半正定矩阵 (Positive Semidefinite Matrix) 是特殊的对称矩阵，正定矩阵的特征值均为正数，半正定矩阵的特征值不小于零。 For Positive Definite" /><meta name="keywords" content="Hugo, theme, even" />
+<meta name="author" content="chuyang" /><meta name="description" content="Local Binary Patterns，简称 LBPs，是一种图像纹理特征表示方法 (texture descriptor)，该方法从 Ojala 等人于 2002 年发表的一篇论文 Multiresolution Grayscale and Rotation Invariant Texture Classification with Local" /><meta name="keywords" content="Hugo, theme, even" />
 
 
 
@@ -26,7 +26,7 @@
 <meta name="generator" content="Hugo 0.77.0 with theme even" />
 
 
-<link rel="canonical" href="http://localhost:1313/blog/post/positive_definite/" />
+<link rel="canonical" href="http://localhost:1313/blog/post/lbp/" />
 <link rel="apple-touch-icon" sizes="180x180" href="/blog/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/blog/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/blog/favicon-16x16.png">
@@ -39,24 +39,24 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
 
 
-<meta property="og:title" content="Positive Deinite Matrices and Positive Semidefinite Matrices" />
-<meta property="og:description" content="对称矩阵 (Symmetric Matrix) 的特征值都是实数，正定矩阵 (Positive Definite Matrix) 与半正定矩阵 (Positive Semidefinite Matrix) 是特殊的对称矩阵，正定矩阵的特征值均为正数，半正定矩阵的特征值不小于零。 For Positive Definite" />
+<meta property="og:title" content="Local Binary Patterns" />
+<meta property="og:description" content="Local Binary Patterns，简称 LBPs，是一种图像纹理特征表示方法 (texture descriptor)，该方法从 Ojala 等人于 2002 年发表的一篇论文 Multiresolution Grayscale and Rotation Invariant Texture Classification with Local" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="http://localhost:1313/blog/post/positive_definite/" />
-<meta property="article:published_time" content="2020-11-08T16:21:39+08:00" />
-<meta property="article:modified_time" content="2020-11-08T16:21:39+08:00" />
-<meta itemprop="name" content="Positive Deinite Matrices and Positive Semidefinite Matrices">
-<meta itemprop="description" content="对称矩阵 (Symmetric Matrix) 的特征值都是实数，正定矩阵 (Positive Definite Matrix) 与半正定矩阵 (Positive Semidefinite Matrix) 是特殊的对称矩阵，正定矩阵的特征值均为正数，半正定矩阵的特征值不小于零。 For Positive Definite">
-<meta itemprop="datePublished" content="2020-11-08T16:21:39+08:00" />
-<meta itemprop="dateModified" content="2020-11-08T16:21:39+08:00" />
-<meta itemprop="wordCount" content="892">
+<meta property="og:url" content="http://localhost:1313/blog/post/lbp/" />
+<meta property="article:published_time" content="2020-11-12T09:22:52+08:00" />
+<meta property="article:modified_time" content="2020-11-12T09:22:52+08:00" />
+<meta itemprop="name" content="Local Binary Patterns">
+<meta itemprop="description" content="Local Binary Patterns，简称 LBPs，是一种图像纹理特征表示方法 (texture descriptor)，该方法从 Ojala 等人于 2002 年发表的一篇论文 Multiresolution Grayscale and Rotation Invariant Texture Classification with Local">
+<meta itemprop="datePublished" content="2020-11-12T09:22:52+08:00" />
+<meta itemprop="dateModified" content="2020-11-12T09:22:52+08:00" />
+<meta itemprop="wordCount" content="576">
 
 
 
-<meta itemprop="keywords" content="线性代数,正定矩阵," />
+<meta itemprop="keywords" content="图像处理,特征提取,纹理,LBP," />
 <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Positive Deinite Matrices and Positive Semidefinite Matrices"/>
-<meta name="twitter:description" content="对称矩阵 (Symmetric Matrix) 的特征值都是实数，正定矩阵 (Positive Definite Matrix) 与半正定矩阵 (Positive Semidefinite Matrix) 是特殊的对称矩阵，正定矩阵的特征值均为正数，半正定矩阵的特征值不小于零。 For Positive Definite"/>
+<meta name="twitter:title" content="Local Binary Patterns"/>
+<meta name="twitter:description" content="Local Binary Patterns，简称 LBPs，是一种图像纹理特征表示方法 (texture descriptor)，该方法从 Ojala 等人于 2002 年发表的一篇论文 Multiresolution Grayscale and Rotation Invariant Texture Classification with Local"/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -123,13 +123,13 @@
           <article class="post">
     
     <header class="post-header">
-      <h1 class="post-title">Positive Deinite Matrices and Positive Semidefinite Matrices</h1>
+      <h1 class="post-title">Local Binary Patterns</h1>
 
       <div class="post-meta">
-        <span class="post-time"> 2020-11-08 </span>
+        <span class="post-time"> 2020-11-12 </span>
         <div class="post-category">
             <a href="/blog/categories/%E4%B8%AD%E6%96%87/"> 中文 </a>
-            <a href="/blog/categories/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/"> 线性代数 </a>
+            <a href="/blog/categories/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/"> 图像处理 </a>
             </div>
         
       </div>
@@ -142,9 +142,7 @@
   <ul>
     <li>
       <ul>
-        <li><a href="#form">Form Positive Definite Matrices</a></li>
-        <li><a href="#how-to-check-if-a-matrix-is-positive-definite">How to check if a matrix is positive definite?</a></li>
-        <li><a href="#energy-based-definition">Energy-based Definition</a></li>
+        <li><a href="#lbps-algorithm">LBPs Algorithm</a></li>
       </ul>
     </li>
   </ul>
@@ -152,37 +150,14 @@
   </div>
 </div>
     <div class="post-content">
-      <p>对称矩阵 (Symmetric Matrix) 的特征值都是实数，正定矩阵 (Positive Definite Matrix) 与半正定矩阵 (Positive Semidefinite Matrix) 是特殊的对称矩阵，正定矩阵的特征值均为正数，半正定矩阵的特征值不小于零。</p>
-<ul>
-<li>For Positive Definite Matrix: All $\lambda &gt; 0$</li>
-<li>For Positive Semidefinite Matrix: All $\lambda \geq 0$</li>
-</ul>
-<h2 id="form">Form Positive Definite Matrices</h2>
-<p>正定矩阵可以由任意一个常规矩阵 $A$ 通过转置与原矩阵作乘积构成：
-$$ S = A^TA $$
-$A$ 可以是任意 $n\times m$ 矩阵，不必是 $n\times n$ 方阶矩阵 (Square Matrix)。$A^TA$ 一定是对称矩阵，同时至少是一个半正定矩阵。其推导如下：<br>
-<strong>推导:</strong> 已知一个矩阵 $S=A^TA$。$S$ 的特征值为 $\lambda$，特征向量为 $x$，即：
-$$A^TAx = \lambda x$$
-等式两边同时乘以 $x^T$：
-$$x^TA^TAx = x^T \lambda x$$
-写成如下形式：
-$$(Ax)^TAx=\lambda x^Tx$$
-$A^TA$ 正好是矩阵的乘方，所以可以写成如下形式：
-$$||Ax||^2 = \lambda ||x||^2$$
-由于 $x$ 不为零向量，所以 $||x||^2 &gt; 0$，由于$||Ax||\geq 0$ (当 $A$ 是奇异矩阵时，$||Ax|| = 0$)，所以 $\lambda \geq 0$。当存在 $\lambda = 0$ 时，$S$ 是一个半正定矩阵，当 $\lambda$ 均大于 $0$ 时，$S$ 是一个正定矩阵。</p>
-<h2 id="how-to-check-if-a-matrix-is-positive-definite">How to check if a matrix is positive definite?</h2>
-<p>以下条件可以检测一个矩阵是否是正定矩阵，若是一个 $n\times n$ 矩阵 $S$ 满足下列任意一个条件，均可判断其为正定矩阵：</p>
-<ol>
-<li>矩阵 $S$ 的所以特征值 $\lambda$ 均大大于 $0$</li>
-<li>矩阵 $S$ 的主元 (pivots) 均大于 $0$</li>
-<li>矩阵 $S$ 的所有上左行列式 (upper left determinants) 均大于 $0$</li>
-<li>矩阵 $S$ 可以分解成如下形式 $S=A^TA$，并且 $A$ 的所有列均线性无关</li>
-<li>矩阵 $S$ 满足 $x^TSx&gt;0$，该不等式对所有非零向量 $x$ 均成立。该式也称为正定矩阵的<strong>能量定义</strong> (energy-based definition)</li>
-</ol>
-<p>条件 1 是正定矩阵的定义式，自然可以判断一个矩阵是否为正定矩阵。条件 2 中的主元指的是矩阵 $S$ 的化简阶梯型 (reduced row echelon form) 的主元。条件 3 中的 upper left determinants 是指从左上角开始的 $1\times 1$、$2\times 2$、&hellip;、$n\times n$ 这 $n$ 个矩阵的行列式均大于 $0$。对于下图中的矩阵来说，就是三个橙色框内的矩阵的行列式均大于 $0$。</p>
-<p><img src="/blog/images/upper_left.png" alt="upper left determinants"></p>
-<p>条件 4 在<a href="#form">构造正定矩阵</a>一节已经推导过，正定矩阵的约束条件还需要加上矩阵 $A$ 的所有列向量线性无关，等同于矩阵 $A$ 不为奇异矩阵。条件 5 是正定矩阵的能量定义，这是非常重要的一个概念，在机器学习与优化理论中都有很多的应用，这部分在下一节讨论。半正定矩阵的判定条件与上述条件基本一致，大于零的条件改为大于等于零就是半正定矩阵的判定条件。</p>
-<h2 id="energy-based-definition">Energy-based Definition</h2>
+      <p>Local Binary Patterns，简称 LBPs，是一种图像纹理特征表示方法 (texture descriptor)，该方法从 Ojala 等人于 2002 年发表的一篇论文 Multiresolution Grayscale and Rotation Invariant Texture Classification with Local Binary Patterns 中得到了广泛关注。</p>
+<p>LBPs 可以表示图像中的局部纹理特征。该局部纹理特征由图像中的所有像素保存，通过比较每个像素与其周围像素的关系，可以得到这些像素的纹理特征表示。
+<img src="/blog/images/lbp_features.png" alt=""></p>
+<h2 id="lbps-algorithm">LBPs Algorithm</h2>
+<p>计算 LBPs 首先需要将原图转换为灰度图像，接着选取一个半径为 $r$ 的邻域，并指定一个领域内的邻接点个数 $p$，这个区域就是局部纹理特征表示的区域。
+<img src="/blog/images/lbp_size.png" alt="">
+对于一张图像中的每个像素，将其作为中心点，都可以提取到以上的邻域。对于每一个这样的邻域，比较中心点与邻域内每一个邻接点的大小，若是中心点大于邻接点，就将邻接点赋为 1，否则就将其赋为 0，这样一个邻域内的所有邻接点都被赋为 0/1 两个状态。选取某个点作为起始点，按顺时针或逆时针方向提取每个邻接点的值（起始点与提取方向可以自己选择，但要保证其他所有邻域的处理方式与这个邻域一致），这样我们就得到了一串 0/1 序列，可以将其看作一个二进制串，计算其十进制值，将其赋给中心点。以同样的方式处理图像中的每个像素，最后就得到了一个与原图像大小一致的每个像素的值都为 $0$ 到 $2^p-1$ 之间某个数的 LBPs 矩阵。该矩阵可以使用直方图表示出来，因为像素点只有 $2^p$ 种可能的值，通过统计每个值出现的次数，可以得到其 LBPs 表示的直方图，同样可以表示为一个 $2^p$ 维的特征向量。
+<img src="/blog/images/lbp_histogram.png" alt=""></p>
 
     </div>
 
@@ -194,7 +169,7 @@ $$||Ax||^2 = \lambda ||x||^2$$
   <p class="copyright-item">
     <span class="item-title">LastMod</span>
     <span class="item-content">
-        2020-11-08
+        2020-11-12
         
     </span>
   </p>
@@ -203,17 +178,15 @@ $$||Ax||^2 = \lambda ||x||^2$$
 </div>
 <footer class="post-footer">
       <div class="post-tags">
-          <a href="/blog/tags/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/">线性代数</a>
-          <a href="/blog/tags/%E6%AD%A3%E5%AE%9A%E7%9F%A9%E9%98%B5/">正定矩阵</a>
+          <a href="/blog/tags/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/">图像处理</a>
+          <a href="/blog/tags/%E7%89%B9%E5%BE%81%E6%8F%90%E5%8F%96/">特征提取</a>
+          <a href="/blog/tags/%E7%BA%B9%E7%90%86/">纹理</a>
+          <a href="/blog/tags/lbp/">LBP</a>
           </div>
       <nav class="post-nav">
-        <a class="prev" href="/blog/post/lbp/">
-            <i class="iconfont icon-left"></i>
-            <span class="prev-text nav-default">Local Binary Patterns</span>
-            <span class="prev-text nav-mobile">Prev</span>
-          </a>
-        <a class="next" href="/blog/post/knn/">
-            <span class="next-text nav-default">K-Nearest Neighbours</span>
+        
+        <a class="next" href="/blog/post/positive_definite/">
+            <span class="next-text nav-default">Positive Deinite Matrices and Positive Semidefinite Matrices</span>
             <span class="next-text nav-mobile">Next</span>
             <i class="iconfont icon-right"></i>
           </a>
