@@ -6,7 +6,16 @@
     <description>Recent content in Posts on Chuyang&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Thu, 12 Nov 2020 09:22:52 +0800</lastBuildDate><atom:link href="http://localhost:1313/blog/post/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 16 Nov 2020 14:26:54 +0800</lastBuildDate><atom:link href="http://localhost:1313/blog/post/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Beta Distribution</title>
+      <link>http://localhost:1313/blog/post/beta_dist/</link>
+      <pubDate>Mon, 16 Nov 2020 14:26:54 +0800</pubDate>
+      
+      <guid>http://localhost:1313/blog/post/beta_dist/</guid>
+      <description>Beta 分布 (Beta Distribution) 是一类定义在区间 $[0,1]$ 上的连续概率分布。Beta 分布由两个参数 $a$ 与 $b$ 决定其形状。将 Beta 分布扩展到多变量的情况即为狄利克雷分布 (Dirichlet Distr</description>
+    </item>
+    
     <item>
       <title>Local Binary Patterns</title>
       <link>http://localhost:1313/blog/post/lbp/</link>

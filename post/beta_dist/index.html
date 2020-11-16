@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Beta Distribution - Chuyang&#39;s Blog</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="chuyang" /><meta name="description" content="Beta 分布 (Beta Distribution) 是一类定义在区间 $[0,1]$ 上的连续概率分布。Beta 分布由两个参数 $a$ 与 $b$ 决定其形状。将 Beta 分布扩展到多变量的情况即为狄利克雷分布 (Dirichlet Distr" /><meta name="keywords" content="Hugo, theme, even" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.77.0 with theme even" />
+
+
+<link rel="canonical" href="http://localhost:1313/blog/post/beta_dist/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/blog/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/blog/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/blog/favicon-16x16.png">
+<link rel="manifest" href="/blog/manifest.json">
+<link rel="mask-icon" href="/blog/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/blog/sass/main.min.c7bc1becf36bcf6a9ebd25d2947e43a2eb745ddb0c9a32b43126fd7fa460c351.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="Beta Distribution" />
+<meta property="og:description" content="Beta 分布 (Beta Distribution) 是一类定义在区间 $[0,1]$ 上的连续概率分布。Beta 分布由两个参数 $a$ 与 $b$ 决定其形状。将 Beta 分布扩展到多变量的情况即为狄利克雷分布 (Dirichlet Distr" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://localhost:1313/blog/post/beta_dist/" />
+<meta property="article:published_time" content="2020-11-16T14:26:54+08:00" />
+<meta property="article:modified_time" content="2020-11-16T14:26:54+08:00" />
+<meta itemprop="name" content="Beta Distribution">
+<meta itemprop="description" content="Beta 分布 (Beta Distribution) 是一类定义在区间 $[0,1]$ 上的连续概率分布。Beta 分布由两个参数 $a$ 与 $b$ 决定其形状。将 Beta 分布扩展到多变量的情况即为狄利克雷分布 (Dirichlet Distr">
+<meta itemprop="datePublished" content="2020-11-16T14:26:54+08:00" />
+<meta itemprop="dateModified" content="2020-11-16T14:26:54+08:00" />
+<meta itemprop="wordCount" content="1935">
+
+
+
+<meta itemprop="keywords" content="概率与统计,Beta分布,Gamma函数," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Beta Distribution"/>
+<meta name="twitter:description" content="Beta 分布 (Beta Distribution) 是一类定义在区间 $[0,1]$ 上的连续概率分布。Beta 分布由两个参数 $a$ 与 $b$ 决定其形状。将 Beta 分布扩展到多变量的情况即为狄利克雷分布 (Dirichlet Distr"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/blog/" class="logo">Blog</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/blog/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/blog/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/blog/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/blog/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a><a href="https://zhaochuyang.github.io/">
+        <li class="mobile-menu-item">About</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/blog/" class="logo">Blog</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/blog/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/blog/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/blog/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/blog/categories/">Categories</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="https://zhaochuyang.github.io/">About</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">Beta Distribution</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2020-11-16 </span>
+        <div class="post-category">
+            <a href="/blog/categories/%E4%B8%AD%E6%96%87/"> 中文 </a>
+            <a href="/blog/categories/%E6%A6%82%E7%8E%87%E4%B8%8E%E7%BB%9F%E8%AE%A1/"> 概率与统计 </a>
+            </div>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">Contents</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#probability-density-function">Probability Density Function</a></li>
+        <li><a href="#conjugate-prior">Conjugate Prior</a></li>
+        <li><a href="#constant-of-pdf">Constant of PDF</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <p>Beta 分布 (Beta Distribution) 是一类定义在区间 $[0,1]$ 上的连续概率分布。Beta 分布由两个参数 $a$ 与 $b$ 决定其形状。将 Beta 分布扩展到多变量的情况即为狄利克雷分布 (Dirichlet Distribution)。<br>
+Beta 分布用来表示连续变量的分布，它的概率密度函数定义在 $[0,1]$ 区间内，除了均匀分布 (Uniform Distribution) 外，Beta 分布是最为常用的用来表示 $[0,1]$ 内随机变量概率的分布。一个随机变量 $X$ 服从 Beta 分布可以记作:
+$$X\sim Beta(a,b)$$</p>
+<h2 id="probability-density-function">Probability Density Function</h2>
+<p>Beta 分布的概率密度函数可以表示成如下形式:
+$$f(x)=cx^{a-1}(1-x)^{b-1}$$
+其中 $x$ 的取值范围为 $[0,1]$，$c$ 是一个常量，用来确保该概率密度函数在定义域上的积分为 1。Beta 分布并不是一个单一的分布，而是一类分布的统一形式，可以用来表示很广泛的一类分布，例如取 $a=1,b=1$ 时，Beta 分布就是均匀分布。下面是当参数 $a,b$ 取不同值时 Beta 分布的概率密度函数的形状：
+<img src="/blog/images/beta_pdfs.png" alt=""></p>
+<h2 id="conjugate-prior">Conjugate Prior</h2>
+<p>Beta 分布的一个很重要的应用就是表示概率的先验分布 (Prior Distribution)，先验分布是指当我们对一个随机变量没有任何已知信息可以推测时，预先赋给这个变量的一个经验式分布，在观察到一些过程后可以通过贝叶斯理论 (Bayes' Theorem) 等方式更新这个变量的分布情况，更新后的分布称为后验分布（Posterior Distribution）。因为 Beta 分布可以表示 $[0,1]$ 内随机变量的分布，而概率的取值范围也为 $[0,1]$，所以常常使用 Beta 分布来表示一个概率的先验分布。<br>
+共轭先验 (Conjugate Prior) 是指一个变量的先验分布与后验分布属于同一个分布族时，我们称先验分布和后验分布是共轭的，该分布是一个共轭分布。例如对于一个随机变量 $X$，这个随机变量服从于某一个由参数 $\theta$ 决定的分布 $f(X;\theta)$，若是 $\theta$ 是一个未知的参数，我们假设 $\theta$ 服从于某一个分布，该分布就是先验分布，若是经过一些观测更新后得到 $\theta$ 的后验分布与其先验分布属于同一个函数族，就说明该函数族是 $f(x|\theta)$ 的共轭分布。Beta 分布是二项分布，伯努利分布与几何分布的共轭分布。<br>
+下面举一个二项分布的例子，假设一个随机变量 $X$ 服从于二项分布，而二项分布的概率 $p$ 是未知的，则基于 $p$ 的随机变量 $X$ 的条件分布服从二项分布，可以写作如下:
+$$X|p\sim B(n,p)$$
+$p$ 可以看作一个在 $[0,1]$ 范围内的随机变量，可以用 Beta 分布来表示 $p$ 的分布，即 $p$ 的先验分布为 Beta 分布：
+$$p\sim Beta(a,b)$$
+假设我们观测到了 $X$ 的一些出现的结果，例如若 $X$ 的一个观测为 $X=k$，这种情况下使用贝叶斯理论来得到 $p$ 的后验分布：
+$$f(p|X=k)=\frac{P(X=k|p)f(p)}{P(X=k)}$$
+由于 $P(X=k)$ 可以由 $P(X=k|p)$ 对 $p$ 积分得到，所以该项并不依赖于 $p$，只依赖于 $k$，因此对于在观测 $X=k$ 下得到的 $p$ 的后验分布来说，$P(X=k)$ 可以视作一个常量。$X=k|p$ 服从于二项分布，可以直接代入二项分布概率公式计算，$f(p)$ 是 $p$ 的概率密度函数，代入上式可以得到:
+$$
+f(p|X=k)=\frac{\binom{n}{k}p^k(1-p)^{n-k}\cdot cp^{a-1}(1-p)^{b-1}}{P(X=k)}
+$$
+其中二项分布的组合、Beta 分布的常数 $c$、$P(X=k)$ 均为常数。忽略常数，上式可以写作：
+$$
+f(p|X=k)\propto p^{a+k-1}(1-p)^{b+n-k-1}
+$$
+可见 $p$ 的后验分布也满足 Beta 分布的基本形式，即 $p$ 的后验分布 $p\sim Beta(a+k,b+n-k)$。一般形式可以写为:
+$$p|X\sim Beta(a+X,b+n-X)$$
+从二项分布的含义上可以理解 $X$ 为尝试成功的次数，$n-X$ 为尝试失败的次数，更新后的 Beta 分布的参数即加上由 $X$ 得到的这两者。</p>
+<h2 id="constant-of-pdf">Constant of PDF</h2>
+<p>Beta 分布的概率密度表函数为 $f(x)=cx^{a-1}(1-x)^{b-1}$，其中常数 $c$ 是为了使该概率密度函数在 $[0,1]$ 上的积分为 $1$，即:
+$$\int_0^1f(x)=\int_0^1cx^{a-1}(1-x)^{b-1}dx=1$$
+求解上式可以得到 $c$ 的表达式，$c$ 也可以使用 Gamma 函数 $\Gamma(z)$ 表示:
+$$
+c=\frac{1}{\int_0^1x^{a-1}(1-x)^{b-1}dx}=\frac{\Gamma(a+b)}{\Gamma(a)\Gamma(b)}
+$$
+但是对于一些特殊的 Beta 分布，我们无需使用上式来计算 $c$，例如对于用来表示二项分布的概率的共轭分布的 Beta 分布，它的概率密度函数为 $f(x)=cp^k(1-p)^{n-k}$，该式中的 $c$ 可以通过如下方式来求解。考虑从 $n+1$ 个中随机选择一个点涂成粉色，剩余 $n$ 个点涂成白色，将这 $n+1$ 个点随机散落在一个 $[0,1]$ 的数轴上，这样这 $n+1$ 个点满足独立同分布。则有 $k$ 个白色的点落在粉色点的左边的概率为:
+$$
+P(X=k)=\int_0^1P(X=k|p)f(p)dp
+$$
+其中 $p$ 是粉色点在数轴上的位置，$f(p)$ 是其落在位置 $p$ 的概率密度函数，由于点在数轴上服从均匀分布，所以 $f(p)=1$，而 $X=k|p$ 服从二项分布，可以通过二项分布的公式计算，于是恰好 $k$ 个点落在粉色点左边的概率为:
+$$
+P(X=k)=\int_0^1\binom{n}{k}p^k(1-p)^{n-k}dp
+$$
+若是我们先将 $n+1$ 个白色的点散落在数轴上，之后从其中随机取一个点涂成粉色，这样选择任何点的概率都是一样的，所有概率的和为 $1$。于是选择任意一个点作为粉色点的概率都为 $1/(n+1)$，选择第一个点作为粉色点就是 $0$ 个点落在粉色点左边的情况，第 $k+1$ 个点作为粉色点就是 $k$ 个点落在粉色点左边的情况，所以有 $k$ 个点落在粉色点左边的概率同样为 $1/(n+1)$，于是：
+$$
+P(X=k)=\int_0^1\binom{n}{k}p^k(1-p)^{n-k}dp=\frac{1}{n+1}
+$$
+则常数 $c=\binom{n}{k}(n+1)$，令 $k=a-1, n-k=b-1$，则服从 $Beta(a,b)$ 分布的概率密度函数的常数 $c=\binom{a+b-2}{a-1}\cdot(n+1)=\frac{(a+b-1)!}{(a-1)!(b-1)!}$。</p>
+
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">Author</span>
+    <span class="item-content">chuyang</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">LastMod</span>
+    <span class="item-content">
+        2020-11-16
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/blog/tags/%E6%A6%82%E7%8E%87%E4%B8%8E%E7%BB%9F%E8%AE%A1/">概率与统计</a>
+          <a href="/blog/tags/beta%E5%88%86%E5%B8%83/">Beta分布</a>
+          <a href="/blog/tags/gamma%E5%87%BD%E6%95%B0/">Gamma函数</a>
+          </div>
+      <nav class="post-nav">
+        
+        <a class="next" href="/blog/post/lbp/">
+            <span class="next-text nav-default">Local Binary Patterns</span>
+            <span class="next-text nav-mobile">Next</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:chuyangzhao@126.com" class="iconfont icon-email" title="email"></a>
+      <a href="http://www.github.com/ZhaoChuyang" class="iconfont icon-github" title="github"></a>
+  <a href="http://localhost:1313/blog/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2017 - 
+    2020<span class="heart"><i class="iconfont icon-heart"></i></span><span>chuyang</span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/blog/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
+  <script type="text/javascript">
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$','$'], ['\\(','\\)']],
+        }
+    };
+  </script>
+  <script async src="https://cdn.jsdelivr.net/npm/mathjax@3.0.5/es5/tex-mml-chtml.js" integrity="sha256-HGLuEfFcsUJGhvB8cQ8nr0gai9EucOOaIxFw7qxmd+w=" crossorigin="anonymous"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>
