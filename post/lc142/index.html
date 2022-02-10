@@ -170,7 +170,7 @@
 <li>$C|(A-B)$ A 与 B 的差可以被 C 整除，或者说 A 与 B 的差是 C 的整数倍</li>
 </ol>
 <h3 id="证明-fast-与-slow-指针一定会相遇">证明 fast 与 slow 指针一定会相遇</h3>
-<p><img src="https://assets.leetcode-cn.com/solution-static/142/142_fig1.png" alt=""></p>
+<p><img src="/blog/images/lc142.png" alt=""></p>
 <p>设链表环外的长度为 a，环长为 n，slow 指针的速度为 1，fast 指针的速度为 2，则经过 $t$ 时间，slow 指针走过的长度为 $t$，fast 指针走过的长度为 $2t$，slow 指针在环上所处的位置为 $(t-a)%n$，fast 指针在环上所处的位置为 $(2t-a)%n$，如果这样的 t 存在，则两指针一定可以相遇，t 要求是整数（非整数一定可以相遇，则该解是 trivial 的），以下是推导过程：
 $$
 \begin{gather}
