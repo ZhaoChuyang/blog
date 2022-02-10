@@ -49,7 +49,7 @@
 <meta itemprop="description" content="LC142 环形链表2 环形链表2，需要用到同余运算（Modular Arithmetic）的知识，本题涉及到两个证明： 如何证明fast和slow指针一定">
 <meta itemprop="datePublished" content="2022-02-10T21:11:35+08:00" />
 <meta itemprop="dateModified" content="2022-02-10T21:11:35+08:00" />
-<meta itemprop="wordCount" content="1410">
+<meta itemprop="wordCount" content="1453">
 
 
 
@@ -144,8 +144,8 @@
         <li><a href="#lc142-环形链表2">LC142 环形链表2</a>
           <ul>
             <li><a href="#modular-arithmetic">Modular Arithmetic</a></li>
+            <li><a href="#计算-fast-和-slow-指针的相遇点">计算 fast 和 slow 指针的相遇点</a></li>
             <li><a href="#证明-fast-与-slow-指针一定会相遇">证明 fast 与 slow 指针一定会相遇</a></li>
-            <li><a href="#证明-fast-与-slow-指针一定会相遇-1">证明 fast 与 slow 指针一定会相遇</a></li>
           </ul>
         </li>
       </ul>
@@ -161,6 +161,7 @@
 <li>如何证明fast和slow指针一定会相遇</li>
 <li>如何证明使用ptr指针再走a个距离正好可以和slow指针在链表进入处相遇</li>
 </ol>
+<p><strong>本题需要写博客，包含同余运算知识，上述两个证明。</strong></p>
 <h3 id="modular-arithmetic">Modular Arithmetic</h3>
 <p>$A \equiv B(\bmod C)$ 意味着 A 和 B 在 mod C 的系统里是相等的，即 A 和 B 除 C 有相同的余数。举个例子，$3 \equiv 5 (\bmod 2)$ 意味着在 mod 2 系统中 3 是等于 5 的，因为 $3%2=1, 5%2=1$ 这两者的余数都为 1，所以他们在模 2 系统中是等价的。注意这里的 $\equiv$ 与 $=$ 并不等价，$5 \equiv 3(\bmod 2)$ 读作 <em>5 congruent to 3 given module 2</em>。当 $A \equiv B(\bmod C)$ 时，有以下几个推论：</p>
 <ol>
@@ -168,13 +169,15 @@
 <li>$A = K\times C +B, K\in \mathbb Z$</li>
 <li>$C|(A-B)$ A 与 B 的差可以被 C 整除，或者说 A 与 B 的差是 C 的整数倍</li>
 </ol>
-<h3 id="证明-fast-与-slow-指针一定会相遇">证明 fast 与 slow 指针一定会相遇</h3>
+<h3 id="计算-fast-和-slow-指针的相遇点">计算 fast 和 slow 指针的相遇点</h3>
 <p><img src="https://assets.leetcode-cn.com/solution-static/142/142_fig1.png" alt=""></p>
 <p>设链表环外的长度为 a，环长为 n，slow 指针的速度为 1，fast 指针的速度为 2，则经过 $t$ 时间，slow 指针走过的长度为 $t$，fast 指针走过的长度为 $2t$，slow 指针在环上所处的位置为 $(t-a)%n$，fast 指针在环上所处的位置为 $(2t-a)%n$，如果这样的 t 存在，则两指针一定可以相遇，t 要求是整数（非整数一定可以相遇，则该解是 trivial 的），以下是推导过程：
 $$
+\begin{gather}
 t-a \equiv 2t-a (\bmod n) \<br>
 n | t (\bmod n) \<br>
 t = k\cdot n \qquad k\in\mathbb Z
+\end{gather}
 $$
 所以此时只要取 t 为 n 的整数倍时两指针就能相遇。该问题可以推广到 fast 指针的速度为 m 的情况，此时 $n|(m-1)t$ 即 $t = \frac{kn}{m-1}$，此时取 k 为 m-1 时即可以保证 t 是整数，所以对于任意 m 上述结论同样成立。在 leetcode 上验证 fast 速度为 3 时同样成立。</p>
 <div class="highlight"><div class="chroma">
@@ -215,25 +218,29 @@ $$
 <p>这里还有一个需要注意的地方，就是如果没有这段环外路径，两个点在环上任意位置处开始，则这两个点是不一定相遇的，证明如下：</p>
 <p>假设 fast 指针在 $x$ 位置处，slow 指针在 $0$ 位置处，则经过 $t$ 时间，fast 指针所在的位置是 $x + mt$，slow 指针的位置在 $t$，此时要判断是否存在 $t$ 满足：
 $$
+\begin{gather}
 x+mt \equiv t ~~(\bmod n) \<br>
 n|x+(m-1)t ~~(\bmod n) \<br>
 x+(m-1)t = k\cdot n \<br>
 t = \frac{kn-x}{m-1}
+\end{gather}
 $$
 此时 t 不一定对于所有的 m 和 x 都有解。为什么这种情况与上述问题不一样呢，原因是在上述问题中，当 slow 指针走过 a 的距离到达链表入口时，fast 指针多走的距离是 $(m-1)a$，用这个值替换上面式子中的 $x$，可以得到:
 $$
 t=\frac{kn-(m-1)a}{m-1}=\frac{kn}{m-1}-a
 $$
 此时只要取 $k$ 为 $m-1$ 的倍数时，则 $t$ 一定存在整数解。</p>
-<h3 id="证明-fast-与-slow-指针一定会相遇-1">证明 fast 与 slow 指针一定会相遇</h3>
+<h3 id="证明-fast-与-slow-指针一定会相遇">证明 fast 与 slow 指针一定会相遇</h3>
 <p>经过 t 时间，fast 指针和 slow 指针在环上所在位置相等，这是上一个证明所用的等式。另一个等式是 fast 指针和 slow 指针所走过的路程是两倍关系。这里用的是第二个等式。</p>
 <p>其中 slow 指针走过的长度为 $a+b+\alpha(b+c)$，fast 指针走过的长度为 $a+b+\beta(b+a)$，因为 fast 指针走过的长度是 slow 指针的两倍，所以有以下关系式：
 $$
+\begin{gather}
 a+b+\beta(b+c) = 2(a+b+\alpha(b+c)) \<br>
-a+b+\beta(b+c)=2a+2b+2\alpha(b+c) \<br>
-0=a+b+(2\alpha-\beta)(b+c) \<br>
+a+b+\beta(b+c) = 2a+2b+2\alpha(b+c) \<br>
+0 = a+b+(2\alpha-\beta)(b+c) \<br>
 a=(\beta-2\alpha)(b+c)-b\<br>
 a=(\beta-2\alpha-1)(b+c)+c
+\end{gather}
 $$
 此时，$a$ 的长度是 $(b+c)$ 的倍数再加上 $c$，而 c 正好是 slow 指针离链表入口的距离，slow 指针再走 c 步正好到链表入口，再走 $(\beta-2\alpha-1)(b+c)$ 步还是会在链表入口。所以我们可以定义一个指向链表头部到指针 ptr，让 ptr 和 slow 同时以1为步长前进，这样当这两个指针相遇的时候，slow 指针还会在链表入口处。</p>
 <p>代码：</p>
@@ -257,26 +264,30 @@ $$
 </span><span class="lnt">16
 </span><span class="lnt">17
 </span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-python" data-lang="python"><span class="k">if</span> <span class="n">head</span> <span class="ow">is</span> <span class="bp">None</span> <span class="ow">or</span> <span class="n">head</span><span class="o">.</span><span class="n">next</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
-  <span class="k">return</span> <span class="bp">None</span>
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">detectCycle</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">head</span><span class="p">:</span> <span class="n">ListNode</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ListNode</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">head</span> <span class="ow">is</span> <span class="bp">None</span> <span class="ow">or</span> <span class="n">head</span><span class="o">.</span><span class="n">next</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">None</span>
+        
+        <span class="n">fast</span> <span class="o">=</span> <span class="n">head</span><span class="o">.</span><span class="n">next</span><span class="o">.</span><span class="n">next</span>
+        <span class="n">slow</span> <span class="o">=</span> <span class="n">head</span><span class="o">.</span><span class="n">next</span>
+        <span class="n">ptr</span> <span class="o">=</span> <span class="n">head</span>
 
-<span class="n">fast</span> <span class="o">=</span> <span class="n">head</span><span class="o">.</span><span class="n">next</span><span class="o">.</span><span class="n">next</span>
-<span class="n">slow</span> <span class="o">=</span> <span class="n">head</span><span class="o">.</span><span class="n">next</span>
-<span class="n">ptr</span> <span class="o">=</span> <span class="n">head</span>
-
-<span class="k">while</span> <span class="n">fast</span> <span class="o">!=</span> <span class="n">slow</span><span class="p">:</span>
-  <span class="k">if</span> <span class="n">fast</span> <span class="ow">is</span> <span class="bp">None</span> <span class="ow">or</span> <span class="n">fast</span><span class="o">.</span><span class="n">next</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
-    <span class="k">return</span> <span class="bp">None</span>
-  <span class="n">fast</span> <span class="o">=</span> <span class="n">fast</span><span class="o">.</span><span class="n">next</span><span class="o">.</span><span class="n">next</span>
-  <span class="n">slow</span> <span class="o">=</span> <span class="n">slow</span><span class="o">.</span><span class="n">next</span>
-
-  <span class="k">while</span> <span class="n">ptr</span> <span class="o">!=</span> <span class="n">slow</span><span class="p">:</span>
-    <span class="n">ptr</span> <span class="o">=</span> <span class="n">ptr</span><span class="o">.</span><span class="n">next</span>
-    <span class="n">slow</span> <span class="o">=</span> <span class="n">slow</span><span class="o">.</span><span class="n">next</span>
-
-    <span class="k">return</span> <span class="n">ptr</span>
+        <span class="k">while</span> <span class="n">fast</span> <span class="o">!=</span> <span class="n">slow</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">fast</span> <span class="ow">is</span> <span class="bp">None</span> <span class="ow">or</span> <span class="n">fast</span><span class="o">.</span><span class="n">next</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+                <span class="k">return</span> <span class="bp">None</span>
+            <span class="n">fast</span> <span class="o">=</span> <span class="n">fast</span><span class="o">.</span><span class="n">next</span><span class="o">.</span><span class="n">next</span>
+            <span class="n">slow</span> <span class="o">=</span> <span class="n">slow</span><span class="o">.</span><span class="n">next</span>
+        
+        <span class="k">while</span> <span class="n">ptr</span> <span class="o">!=</span> <span class="n">slow</span><span class="p">:</span>
+            <span class="n">ptr</span> <span class="o">=</span> <span class="n">ptr</span><span class="o">.</span><span class="n">next</span>
+            <span class="n">slow</span> <span class="o">=</span> <span class="n">slow</span><span class="o">.</span><span class="n">next</span>
+        
+        <span class="k">return</span> <span class="n">ptr</span>
 </code></pre></td></tr></table>
 </div>
 </div>
