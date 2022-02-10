@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Dirichlet Process - Chuyang&#39;s Blog</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="chuyang" /><meta name="description" content="Dirichlet Distribution 狄利克雷分布 (Dirichlet Distribution) ，通常记作 $\mathrm{Dir}(\boldsymbol \alpha)$，是以向量 $\boldsymbol \alpha$ 作为参数的连续多变量概率分布族 (family of continuous multivariate probability distribution)，其参数 $\boldsymbol \alpha$" /><meta name="keywords" content="Hugo, theme, even" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.77.0 with theme even" />
+
+
+<link rel="canonical" href="http://localhost:1313/blog/post/dirichlet_process/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/blog/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/blog/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/blog/favicon-16x16.png">
+<link rel="manifest" href="/blog/manifest.json">
+<link rel="mask-icon" href="/blog/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/blog/sass/main.min.c7bc1becf36bcf6a9ebd25d2947e43a2eb745ddb0c9a32b43126fd7fa460c351.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="Dirichlet Process" />
+<meta property="og:description" content="Dirichlet Distribution 狄利克雷分布 (Dirichlet Distribution) ，通常记作 $\mathrm{Dir}(\boldsymbol \alpha)$，是以向量 $\boldsymbol \alpha$ 作为参数的连续多变量概率分布族 (family of continuous multivariate probability distribution)，其参数 $\boldsymbol \alpha$" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://localhost:1313/blog/post/dirichlet_process/" />
+<meta property="article:published_time" content="2020-11-26T09:49:31+08:00" />
+<meta property="article:modified_time" content="2020-11-26T09:49:31+08:00" />
+<meta itemprop="name" content="Dirichlet Process">
+<meta itemprop="description" content="Dirichlet Distribution 狄利克雷分布 (Dirichlet Distribution) ，通常记作 $\mathrm{Dir}(\boldsymbol \alpha)$，是以向量 $\boldsymbol \alpha$ 作为参数的连续多变量概率分布族 (family of continuous multivariate probability distribution)，其参数 $\boldsymbol \alpha$">
+<meta itemprop="datePublished" content="2020-11-26T09:49:31+08:00" />
+<meta itemprop="dateModified" content="2020-11-26T09:49:31+08:00" />
+<meta itemprop="wordCount" content="667">
+
+
+
+<meta itemprop="keywords" content="狄利克雷过程,狄利克雷过程混合模型,狄利克雷分布,中国餐馆过程,分层狄利克雷过程,非参贝叶斯," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Dirichlet Process"/>
+<meta name="twitter:description" content="Dirichlet Distribution 狄利克雷分布 (Dirichlet Distribution) ，通常记作 $\mathrm{Dir}(\boldsymbol \alpha)$，是以向量 $\boldsymbol \alpha$ 作为参数的连续多变量概率分布族 (family of continuous multivariate probability distribution)，其参数 $\boldsymbol \alpha$"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/blog/" class="logo">Blog</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/blog/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/blog/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/blog/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/blog/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a><a href="https://zhaochuyang.github.io/">
+        <li class="mobile-menu-item">About</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/blog/" class="logo">Blog</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/blog/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/blog/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/blog/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/blog/categories/">Categories</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="https://zhaochuyang.github.io/">About</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">Dirichlet Process</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2020-11-26 </span>
+        <div class="post-category">
+            <a href="/blog/categories/%E4%B8%AD%E6%96%87/"> 中文 </a>
+            <a href="/blog/categories/%E6%A6%82%E7%8E%87%E4%B8%8E%E7%BB%9F%E8%AE%A1/"> 概率与统计 </a>
+            </div>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">Contents</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#dirichlet-distribution">Dirichlet Distribution</a>
+          <ul>
+            <li><a href="#definition">Definition</a></li>
+            <li><a href="#mean-and-variance">Mean and Variance</a></li>
+          </ul>
+        </li>
+        <li><a href="#bayesian-statistics">Bayesian Statistics</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <h2 id="dirichlet-distribution">Dirichlet Distribution</h2>
+<p>狄利克雷分布 (Dirichlet Distribution) ，通常记作 $\mathrm{Dir}(\boldsymbol \alpha)$，是以向量 $\boldsymbol \alpha$ 作为参数的连续多变量概率分布族 (family of continuous multivariate probability distribution)，其参数 $\boldsymbol \alpha$ 满足各个元素均为正数。对于一个参数为 $k$ 维向量 $\boldsymbol \alpha=[\alpha_1, \dots, \alpha_k]$ 的狄利克雷分布，从其中采样出的样本同样为一个 $k$ 维向量 $\boldsymbol x=[x_1,\dots,x_k]$，且满足各个元素值均不小于零且其和为 $1$，即 $\sum_{i=1}^kx_i=1, x_i\geq 0$，这与离散变量的 PMF 性质相似，因此狄利克雷分布的样本常用来作为离散分布的 PMF，也就是说狄利克雷分布可以视作 PMF 的分布。此外，由于狄利克雷分布与多项式分布 (Multinomial Distribution) 共轭，狄利克雷分布也常用作多项式分布的共轭先验分布。</p>
+<h3 id="definition">Definition</h3>
+<p>令 $Q=[q_1,\dots,q_k]$ 为随机的 PMF，满足 $q_i\geq 0, \sum_{i=1}^kq_i=1$，令 $\boldsymbol \alpha=[\alpha_1,\dots,\alpha_k]$ 为一个 $k$ 维的向量，满足 $\alpha_i &gt; 0, i=1,\dots,k$，令 $\alpha_0=\sum_{i=1}^k\alpha_i$。这样可以说 $Q$ 服从于以 $\boldsymbol \alpha$ 为参数的狄利克雷分布，记作 $Q\sim Dir(\boldsymbol \alpha)$，并且有如下概率密度函数
+$$
+f(q;\boldsymbol \alpha)=\frac{\Gamma(\alpha_0)}{\sum_{i=1}^k\Gamma(\alpha_i)}\prod_{i=1}^kq_i^{\alpha_i-1}
+$$
+其中 $\Gamma(z)$ 为 Gamma 函数，Gamma 函数满足 $\Gamma(z+1)=z\Gamma(z)$，可以看作阶乘在实数域上的扩展。对于一个 $k$ 维的狄利克雷分布，其样本为可以看作有 $k$ 个元素的 PMF，由于 PMF 满足各个元素不为复数，且累加和为 $0$，这些样本都是落在一个 $k-1$ 维的子平面上，称为 simplex，记作 $\delta_k$，下图是一些三维的狄利克雷分布的分布情况:
+<img src="/blog/images/simplex.png" alt=""></p>
+<h3 id="mean-and-variance">Mean and Variance</h3>
+<p>狄利克雷分布是用来表示多变量的分布，对于一个服从于参数为 $\boldsymbol \alpha$ 的狄利克雷分布的变量 $X$，其第 $i$ 个元素的均值与
+$$
+\mathbb{E}[X_i]=\frac{\alpha_i}{\sum_{i=1}^k\alpha_i}
+$$
+其方差为
+$$
+\mathrm{Var}(X_i)=\frac{\tilde{\alpha}_i(1-\tilde{\alpha_i})}{\alpha_0+1}, \qquad \tilde{\alpha}_i=\frac{\alpha_i}{\alpha_0} \text{ and } \alpha_0=\sum_{i=1}^k\alpha_i
+$$</p>
+<h2 id="bayesian-statistics">Bayesian Statistics</h2>
+
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">Author</span>
+    <span class="item-content">chuyang</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">LastMod</span>
+    <span class="item-content">
+        2020-11-26
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/blog/tags/%E7%8B%84%E5%88%A9%E5%85%8B%E9%9B%B7%E8%BF%87%E7%A8%8B/">狄利克雷过程</a>
+          <a href="/blog/tags/%E7%8B%84%E5%88%A9%E5%85%8B%E9%9B%B7%E8%BF%87%E7%A8%8B%E6%B7%B7%E5%90%88%E6%A8%A1%E5%9E%8B/">狄利克雷过程混合模型</a>
+          <a href="/blog/tags/%E7%8B%84%E5%88%A9%E5%85%8B%E9%9B%B7%E5%88%86%E5%B8%83/">狄利克雷分布</a>
+          <a href="/blog/tags/%E4%B8%AD%E5%9B%BD%E9%A4%90%E9%A6%86%E8%BF%87%E7%A8%8B/">中国餐馆过程</a>
+          <a href="/blog/tags/%E5%88%86%E5%B1%82%E7%8B%84%E5%88%A9%E5%85%8B%E9%9B%B7%E8%BF%87%E7%A8%8B/">分层狄利克雷过程</a>
+          <a href="/blog/tags/%E9%9D%9E%E5%8F%82%E8%B4%9D%E5%8F%B6%E6%96%AF/">非参贝叶斯</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/blog/post/lc142/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">Lc142</span>
+            <span class="prev-text nav-mobile">Prev</span>
+          </a>
+        <a class="next" href="/blog/post/beta_dist/">
+            <span class="next-text nav-default">Beta Distribution</span>
+            <span class="next-text nav-mobile">Next</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:chuyangzhao@126.com" class="iconfont icon-email" title="email"></a>
+      <a href="http://www.github.com/ZhaoChuyang" class="iconfont icon-github" title="github"></a>
+  <a href="http://localhost:1313/blog/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2017 - 
+    2022<span class="heart"><i class="iconfont icon-heart"></i></span><span>chuyang</span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/blog/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
+  <script type="text/javascript">
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$','$'], ['\\(','\\)']],
+        }
+    };
+  </script>
+  <script async src="https://cdn.jsdelivr.net/npm/mathjax@3.0.5/es5/tex-mml-chtml.js" integrity="sha256-HGLuEfFcsUJGhvB8cQ8nr0gai9EucOOaIxFw7qxmd+w=" crossorigin="anonymous"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

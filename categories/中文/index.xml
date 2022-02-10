@@ -6,7 +6,16 @@
     <description>Recent content in 中文 on Chuyang&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Mon, 16 Nov 2020 14:26:54 +0800</lastBuildDate><atom:link href="http://localhost:1313/blog/categories/%E4%B8%AD%E6%96%87/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 26 Nov 2020 09:49:31 +0800</lastBuildDate><atom:link href="http://localhost:1313/blog/categories/%E4%B8%AD%E6%96%87/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Dirichlet Process</title>
+      <link>http://localhost:1313/blog/post/dirichlet_process/</link>
+      <pubDate>Thu, 26 Nov 2020 09:49:31 +0800</pubDate>
+      
+      <guid>http://localhost:1313/blog/post/dirichlet_process/</guid>
+      <description>Dirichlet Distribution 狄利克雷分布 (Dirichlet Distribution) ，通常记作 $\mathrm{Dir}(\boldsymbol \alpha)$，是以向量 $\boldsymbol \alpha$ 作为参数的连续多变量概率分布族 (family of continuous multivariate probability distribution)，其参数 $\boldsymbol \alpha$</description>
+    </item>
+    
     <item>
       <title>Beta Distribution</title>
       <link>http://localhost:1313/blog/post/beta_dist/</link>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>双指针 on Chuyang&#39;s Blog</title>
+    <link>http://localhost:1313/blog/tags/%E5%8F%8C%E6%8C%87%E9%92%88/</link>
+    <description>Recent content in 双指针 on Chuyang&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Thu, 10 Feb 2022 21:11:35 +0800</lastBuildDate><atom:link href="http://localhost:1313/blog/tags/%E5%8F%8C%E6%8C%87%E9%92%88/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Lc142</title>
+      <link>http://localhost:1313/blog/post/lc142/</link>
+      <pubDate>Thu, 10 Feb 2022 21:11:35 +0800</pubDate>
+      
+      <guid>http://localhost:1313/blog/post/lc142/</guid>
+      <description>LC142 环形链表2，需要用到同余运算（Modular Arithmetic）的知识，本题涉及到两个证明： 如何证明fast和slow指针一定会相遇 如何</description>
+    </item>
+    
+  </channel>
+</rss>
