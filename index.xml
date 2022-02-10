@@ -8,12 +8,12 @@
     <language>en</language>
     <lastBuildDate>Thu, 10 Feb 2022 21:11:35 +0800</lastBuildDate><atom:link href="http://localhost:1313/blog/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Lc142 环形链表2</title>
+      <title>LC142</title>
       <link>http://localhost:1313/blog/post/lc142/</link>
       <pubDate>Thu, 10 Feb 2022 21:11:35 +0800</pubDate>
       
       <guid>http://localhost:1313/blog/post/lc142/</guid>
-      <description>LC142 环形链表2 环形链表2，需要用到同余运算（Modular Arithmetic）的知识，本题涉及到两个证明： 如何证明fast和slow指针一定</description>
+      <description>LeetCode142 环形链表2 环形链表2，需要用到同余运算（Modular Arithmetic）的知识，本题涉及到两个证明： 如何证明fast和slow指针一定</description>
     </item>
     
     <item>
